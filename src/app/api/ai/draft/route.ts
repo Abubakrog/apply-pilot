@@ -89,13 +89,34 @@ ${promptQuestion ? `- Specific Prompt/Question to Answer: "${promptQuestion}"` :
 
 Draft the response now as valid JSON.`;
 
-    const response = await ai.models.generateContent({
-      model: 'gemini-3.8-flash',
-      contents: `${systemPrompt}\n\n${userPrompt}`,
-      config: {
-        responseMimeType: 'application/json',
-      },
-    });
+    // Resilient generation with fallback across current models
+    let response;
+    const candidateModels = ['gemini-3.8-flash', 'gemini-3.5-flash', 'gemini-3.1-flash-lite'];
+    let lastErr;
+
+    for (const model of candidateModels) {
+      try {
+        response = await ai.models.generateContent({
+          model,
+          contents: `${systemPrompt}\n\n${userPrompt}`,
+          config: {
+            responseMimeType: 'application/json',
+          },
+        });
+        if (response) break;
+      } catch (err: unknown) {
+        lastErr = err;
+        const msg = (err as Error).message || '';
+        if (msg.includes('503') || msg.includes('404') || msg.includes('high demand') || msg.includes('UNAVAILABLE')) {
+          continue;
+        }
+        throw err;
+      }
+    }
+
+    if (!response) {
+      throw lastErr || new Error('Failed to generate response from Gemini API');
+    }
 
     const outputText = response.text || '';
     let parsedResult;
