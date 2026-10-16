@@ -2,16 +2,15 @@ import { createBrowserClient } from '@supabase/ssr';
 import { isSupabaseConfigured } from './env';
 
 export function createClient() {
-  if (!isSupabaseConfigured()) {
-    // Return a dummy client or null if not configured to prevent crashes during preview
-    return createBrowserClient(
-      process.env.NEXT_PUBLIC_SUPABASE_URL || 'https://placeholder.supabase.co',
-      process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || 'placeholder-anon-key'
-    );
-  }
+  const url =
+    process.env.NEXT_PUBLIC_SUPABASE_URL ||
+    process.env.SUPABASE_URL ||
+    'https://placeholder.supabase.co';
 
-  return createBrowserClient(
-    process.env.NEXT_PUBLIC_SUPABASE_URL!,
-    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
-  );
+  const anonKey =
+    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY ||
+    process.env.SUPABASE_PUBLISHABLE_KEY ||
+    'placeholder-anon-key';
+
+  return createBrowserClient(url, anonKey);
 }
