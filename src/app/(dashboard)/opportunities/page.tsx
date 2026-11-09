@@ -14,7 +14,7 @@ import {
   Filter,
   Plus,
   ArrowUpDown,
-  Sparkles,
+  PenLine,
 } from 'lucide-react';
 
 interface OpportunitiesPageProps {
@@ -110,7 +110,7 @@ export default function OpportunitiesPage({
           <div className="flex flex-1 flex-wrap items-center gap-2">
             {/* Search Input */}
             <div className="relative min-w-[200px] flex-1 sm:max-w-xs">
-              <Search className="absolute left-2.5 top-2.5 h-3.5 w-3.5 text-slate-400" />
+              <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-slate-400" />
               <input
                 type="text"
                 placeholder="Search opportunities, orgs..."
@@ -124,7 +124,7 @@ export default function OpportunitiesPage({
             <select
               value={selectedCategory}
               onChange={(e) => setSelectedCategory(e.target.value as OpportunityCategory | 'All')}
-              className="px-2.5 py-1.5 text-xs rounded-md border border-slate-200 bg-white dark:bg-slate-900 dark:border-slate-800 text-slate-700 dark:text-slate-300 focus:outline-none focus:ring-1 focus:ring-blue-600"
+              className="px-3 py-1.5 text-xs rounded-md border border-slate-200 bg-white dark:bg-slate-900 dark:border-slate-800 text-slate-700 dark:text-slate-300 focus:outline-none focus:ring-1 focus:ring-blue-600"
             >
               {CATEGORIES.map((cat) => (
                 <option key={cat} value={cat}>
@@ -137,7 +137,7 @@ export default function OpportunitiesPage({
             <select
               value={selectedStatus}
               onChange={(e) => setSelectedStatus(e.target.value as ApplicationStatus | 'All')}
-              className="px-2.5 py-1.5 text-xs rounded-md border border-slate-200 bg-white dark:bg-slate-900 dark:border-slate-800 text-slate-700 dark:text-slate-300 focus:outline-none focus:ring-1 focus:ring-blue-600"
+              className="px-3 py-1.5 text-xs rounded-md border border-slate-200 bg-white dark:bg-slate-900 dark:border-slate-800 text-slate-700 dark:text-slate-300 focus:outline-none focus:ring-1 focus:ring-blue-600"
             >
               {STATUSES.map((st) => (
                 <option key={st} value={st}>
@@ -150,7 +150,7 @@ export default function OpportunitiesPage({
             <select
               value={sortBy}
               onChange={(e) => setSortBy(e.target.value as any)}
-              className="px-2.5 py-1.5 text-xs rounded-md border border-slate-200 bg-white dark:bg-slate-900 dark:border-slate-800 text-slate-700 dark:text-slate-300 focus:outline-none focus:ring-1 focus:ring-blue-600"
+              className="px-3 py-1.5 text-xs rounded-md border border-slate-200 bg-white dark:bg-slate-900 dark:border-slate-800 text-slate-700 dark:text-slate-300 focus:outline-none focus:ring-1 focus:ring-blue-600"
             >
               <option value="deadline_asc">Deadline: Soonest first</option>
               <option value="deadline_desc">Deadline: Latest first</option>
@@ -170,7 +170,7 @@ export default function OpportunitiesPage({
                 }`}
                 title="List / Table View"
               >
-                <List className="h-3.5 w-3.5" />
+                <List className="h-4 w-4" />
                 <span className="text-[11px] hidden sm:inline">Table</span>
               </button>
               <button
@@ -182,7 +182,7 @@ export default function OpportunitiesPage({
                 }`}
                 title="Status Kanban Board"
               >
-                <Columns className="h-3.5 w-3.5" />
+                <Columns className="h-4 w-4" />
                 <span className="text-[11px] hidden sm:inline">Board</span>
               </button>
             </div>
@@ -192,8 +192,8 @@ export default function OpportunitiesPage({
               size="sm"
               className="text-xs h-8 bg-blue-600 hover:bg-blue-700 text-white gap-1"
             >
-              <Plus className="h-3.5 w-3.5" />
-              Add Opportunity
+              <Plus className="h-4 w-4" />
+              Add opportunity
             </Button>
           </div>
         </div>

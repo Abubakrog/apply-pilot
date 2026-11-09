@@ -6,7 +6,7 @@ import { Opportunity, ApplicationStatus } from '@/types/database';
 import { CategoryBadge } from './category-badge';
 import { StatusBadge } from './status-badge';
 import { formatDate, getDaysRemaining, useCurrentDate } from '@/lib/utils';
-import { ExternalLink, Sparkles, Trash2, Calendar, MapPin } from 'lucide-react';
+import { ExternalLink, PenLine, Trash2, Calendar, MapPin } from 'lucide-react';
 import { useApp } from '@/lib/store/app-context';
 import { useToast } from '@/components/ui/toast';
 
@@ -116,13 +116,13 @@ export function OpportunityTable({ opportunities }: OpportunityTableProps) {
                   <td className="py-3 px-4 whitespace-nowrap">
                     {opp.deadline ? (
                       <div className="flex items-center gap-1.5">
-                        <Calendar className="h-3.5 w-3.5 text-slate-400" />
+                        <Calendar className="h-4 w-4 text-slate-400" />
                         <span className="text-slate-700 dark:text-slate-300">
                           {formatDate(opp.deadline)}
                         </span>
                         {daysLeft !== null && !isClosed && (
                           <span
-                            className={`ml-1 text-[10px] px-1.5 py-0.2 rounded font-medium ${
+                            className={`ml-1 text-[11px] px-1.5 py-0.2 rounded font-medium ${
                               daysLeft <= 2
                                 ? 'bg-red-50 text-red-700 dark:bg-red-950/40 dark:text-red-300'
                                 : daysLeft <= 7
@@ -161,7 +161,7 @@ export function OpportunityTable({ opportunities }: OpportunityTableProps) {
                         title="Open AI Assistant"
                         className="p-1 text-slate-400 hover:text-blue-600 dark:hover:text-blue-400 rounded hover:bg-slate-100 dark:hover:bg-slate-800"
                       >
-                        <Sparkles className="h-3.5 w-3.5" />
+                        <PenLine className="h-4 w-4" />
                       </Link>
 
                       {opp.url && (
@@ -172,7 +172,7 @@ export function OpportunityTable({ opportunities }: OpportunityTableProps) {
                           title="Open original website"
                           className="p-1 text-slate-400 hover:text-slate-600 dark:hover:text-slate-300 rounded hover:bg-slate-100 dark:hover:bg-slate-800"
                         >
-                          <ExternalLink className="h-3.5 w-3.5" />
+                          <ExternalLink className="h-4 w-4" />
                         </a>
                       )}
 
@@ -181,7 +181,7 @@ export function OpportunityTable({ opportunities }: OpportunityTableProps) {
                         title="Delete opportunity"
                         className="p-1 text-slate-400 hover:text-red-600 dark:hover:text-red-400 rounded hover:bg-slate-100 dark:hover:bg-slate-800"
                       >
-                        <Trash2 className="h-3.5 w-3.5" />
+                        <Trash2 className="h-4 w-4" />
                       </button>
                     </div>
                   </td>

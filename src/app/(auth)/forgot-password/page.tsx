@@ -22,7 +22,7 @@ export default function ForgotPasswordPage() {
 
     if (!isSupabaseConfigured()) {
       setSent(true);
-      success('Password reset instructions generated!');
+      success('Reset instructions ready');
       setLoading(false);
       return;
     }
@@ -36,7 +36,7 @@ export default function ForgotPasswordPage() {
       if (resetError) throw resetError;
 
       setSent(true);
-      success('Password reset email dispatched!');
+      success('Reset email sent');
     } catch (err: unknown) {
       const e = err as Error;
       setAuthError(e.message || 'Failed to send password reset email');
@@ -51,14 +51,14 @@ export default function ForgotPasswordPage() {
       <div className="w-full max-w-sm space-y-6">
         <div className="text-center">
           <Link href="/" className="inline-flex items-center gap-2 mb-2">
-            <div className="h-7 w-7 rounded bg-slate-900 dark:bg-slate-50 flex items-center justify-center text-white dark:text-slate-950 text-xs font-bold tracking-wider">
+            <div className="h-7 w-7 rounded bg-slate-900 dark:bg-slate-50 flex items-center justify-center text-white dark:text-slate-950 text-xs font-semibold">
               AP
             </div>
-            <span className="font-bold text-lg tracking-tight text-slate-900 dark:text-slate-100">
-              Apply<span className="text-blue-600">Pilot</span>
+            <span className="font-semibold text-lg text-slate-900 dark:text-slate-100">
+              ApplyPilot
             </span>
           </Link>
-          <h2 className="text-xl font-bold tracking-tight text-slate-900 dark:text-slate-100">
+          <h2 className="text-xl font-semibold text-slate-900 dark:text-slate-100">
             Reset your password
           </h2>
           <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">
@@ -80,7 +80,7 @@ export default function ForgotPasswordPage() {
                 <CheckCircle className="h-5 w-5" />
               </div>
               <h3 className="text-xs font-semibold text-slate-900 dark:text-slate-100">
-                Recovery Email Sent
+                Recovery email sent
               </h3>
               <p className="text-[11px] text-slate-500">
                 If an account exists for <strong>{email}</strong>, check your inbox for instructions to reset your password.
@@ -88,7 +88,7 @@ export default function ForgotPasswordPage() {
               <div className="pt-2">
                 <Link href="/login">
                   <Button variant="outline" size="sm" className="w-full text-xs">
-                    Return to Sign In
+                    Return to sign in
                   </Button>
                 </Link>
               </div>
@@ -97,7 +97,7 @@ export default function ForgotPasswordPage() {
             <form onSubmit={handleSubmit} className="space-y-4">
               <div>
                 <label className="block text-xs font-medium text-slate-700 dark:text-slate-300 mb-1">
-                  Email Address
+                  Email address
                 </label>
                 <div className="relative">
                   <Mail className="absolute left-3 top-2.5 h-4 w-4 text-slate-400" />
@@ -113,7 +113,7 @@ export default function ForgotPasswordPage() {
               </div>
 
               <Button type="submit" loading={loading} className="w-full text-xs h-9">
-                Send Reset Link
+                Send reset link
               </Button>
             </form>
           )}

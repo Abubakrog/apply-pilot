@@ -60,7 +60,7 @@ export function ToastProvider({ children }: { children: React.ReactNode }) {
             <div
               key={t.id}
               className={cn(
-                'pointer-events-auto flex items-start gap-3 rounded-md border bg-white p-3.5 shadow-md dark:bg-slate-900 transition-all animate-in slide-in-from-bottom-2',
+                'pointer-events-auto flex items-start gap-3 rounded-md border bg-white p-4 shadow-md dark:bg-slate-900 transition animate-in slide-in-from-bottom-2',
                 t.type === 'success' && 'border-emerald-200 dark:border-emerald-900',
                 t.type === 'error' && 'border-red-200 dark:border-red-900',
                 t.type === 'info' && 'border-slate-200 dark:border-slate-800'
@@ -81,7 +81,7 @@ export function ToastProvider({ children }: { children: React.ReactNode }) {
                 onClick={() => removeToast(t.id)}
                 className="text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 p-0.5"
               >
-                <X className="h-3.5 w-3.5" />
+                <X className="h-4 w-4" />
               </button>
             </div>
           );

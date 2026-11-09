@@ -6,7 +6,7 @@ import { Button } from '@/components/ui/button';
 import { OpportunityCategory, ApplicationStatus } from '@/types/database';
 import { useApp } from '@/lib/store/app-context';
 import { useToast } from '@/components/ui/toast';
-import { Sparkles, Link as LinkIcon, Plus, AlertCircle, CheckCircle } from 'lucide-react';
+import { ScanText, Link as LinkIcon, Plus, AlertCircle, CheckCircle } from 'lucide-react';
 
 interface AddOpportunityModalProps {
   isOpen: boolean;
@@ -170,7 +170,7 @@ export function AddOpportunityModal({ isOpen, onClose }: AddOpportunityModalProp
         relevant_links: url.trim() ? [{ title: 'Application Link', url: url.trim() }] : [],
       });
 
-      success(`Saved "${title}" to your opportunities!`);
+      success(`Saved “${title}”`);
       handleClose();
     } catch (err: unknown) {
       const e = err as Error;
@@ -193,26 +193,26 @@ export function AddOpportunityModal({ isOpen, onClose }: AddOpportunityModalProp
         <button
           type="button"
           onClick={() => setMode('url')}
-          className={`flex items-center gap-2 pb-2.5 text-xs font-medium border-b-2 transition-colors ${
+          className={`flex items-center gap-2 pb-3 text-xs font-medium border-b-2 transition-colors ${
             mode === 'url'
               ? 'border-blue-600 text-blue-600 dark:text-blue-400'
               : 'border-transparent text-slate-500 hover:text-slate-800 dark:text-slate-400 dark:hover:text-slate-200'
           }`}
         >
-          <Sparkles className="h-3.5 w-3.5" />
-          Paste URL with AI Extraction
+          <ScanText className="h-4 w-4" />
+          Paste URL with AI extraction
         </button>
         <button
           type="button"
           onClick={() => setMode('manual')}
-          className={`flex items-center gap-2 pb-2.5 ml-6 text-xs font-medium border-b-2 transition-colors ${
+          className={`flex items-center gap-2 pb-3 ml-6 text-xs font-medium border-b-2 transition-colors ${
             mode === 'manual'
               ? 'border-blue-600 text-blue-600 dark:text-blue-400'
               : 'border-transparent text-slate-500 hover:text-slate-800 dark:text-slate-400 dark:hover:text-slate-200'
           }`}
         >
-          <Plus className="h-3.5 w-3.5" />
-          Manual Entry
+          <Plus className="h-4 w-4" />
+          Manual entry
         </button>
       </div>
 
@@ -220,7 +220,7 @@ export function AddOpportunityModal({ isOpen, onClose }: AddOpportunityModalProp
         <form onSubmit={handleExtract} className="space-y-4 mb-6">
           <div>
             <label className="block text-xs font-medium text-slate-700 dark:text-slate-300 mb-1.5">
-              Opportunity Posting URL
+              Opportunity posting URL
             </label>
             <div className="flex gap-2">
               <div className="relative flex-1">
@@ -235,8 +235,8 @@ export function AddOpportunityModal({ isOpen, onClose }: AddOpportunityModalProp
                 />
               </div>
               <Button type="submit" loading={isExtracting} size="sm">
-                <Sparkles className="h-3.5 w-3.5 mr-1" />
-                Extract Details
+                <ScanText className="h-4 w-4 mr-1" />
+                Extract details
               </Button>
             </div>
             <p className="text-[11px] text-slate-500 dark:text-slate-400 mt-1.5">
@@ -248,10 +248,10 @@ export function AddOpportunityModal({ isOpen, onClose }: AddOpportunityModalProp
       )}
 
       {hasExtracted && (
-        <div className="mb-4 rounded-md bg-emerald-50 dark:bg-emerald-950/30 border border-emerald-200 dark:border-emerald-900 p-2.5 flex items-start gap-2 text-xs text-emerald-800 dark:text-emerald-300">
+        <div className="mb-4 rounded-md bg-emerald-50 dark:bg-emerald-950/30 border border-emerald-200 dark:border-emerald-900 p-3 flex items-start gap-2 text-xs text-emerald-800 dark:text-emerald-300">
           <CheckCircle className="h-4 w-4 shrink-0 mt-0.5" />
           <div>
-            <span className="font-semibold">Opportunity details extracted!</span>
+            <span className="font-medium">Details extracted. Check them before saving</span>
             <p className="mt-0.5 text-[11px] text-emerald-700 dark:text-emerald-400">
               Please review and adjust the extracted fields below before saving.
             </p>
@@ -260,7 +260,7 @@ export function AddOpportunityModal({ isOpen, onClose }: AddOpportunityModalProp
       )}
 
       {extractionNotice && (
-        <div className="mb-4 rounded-md bg-amber-50 dark:bg-amber-950/30 border border-amber-200 dark:border-amber-900 p-2.5 flex items-start gap-2 text-xs text-amber-800 dark:text-amber-300">
+        <div className="mb-4 rounded-md bg-amber-50 dark:bg-amber-950/30 border border-amber-200 dark:border-amber-900 p-3 flex items-start gap-2 text-xs text-amber-800 dark:text-amber-300">
           <AlertCircle className="h-4 w-4 shrink-0 mt-0.5" />
           <p className="text-[11px] leading-relaxed">{extractionNotice}</p>
         </div>
@@ -318,7 +318,7 @@ export function AddOpportunityModal({ isOpen, onClose }: AddOpportunityModalProp
 
           <div>
             <label className="block text-xs font-medium text-slate-700 dark:text-slate-300 mb-1">
-              Initial Status
+              Initial status
             </label>
             <select
               value={status}
@@ -335,7 +335,7 @@ export function AddOpportunityModal({ isOpen, onClose }: AddOpportunityModalProp
 
           <div>
             <label className="block text-xs font-medium text-slate-700 dark:text-slate-300 mb-1">
-              Application Deadline
+              Application deadline
             </label>
             <input
               type="date"
@@ -349,7 +349,7 @@ export function AddOpportunityModal({ isOpen, onClose }: AddOpportunityModalProp
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
           <div>
             <label className="block text-xs font-medium text-slate-700 dark:text-slate-300 mb-1">
-              Location / Remote Status
+              Location / remote status
             </label>
             <input
               type="text"
@@ -362,7 +362,7 @@ export function AddOpportunityModal({ isOpen, onClose }: AddOpportunityModalProp
 
           <div>
             <label className="block text-xs font-medium text-slate-700 dark:text-slate-300 mb-1">
-              Posting / Application URL
+              Posting / application URL
             </label>
             <input
               type="url"
@@ -376,7 +376,7 @@ export function AddOpportunityModal({ isOpen, onClose }: AddOpportunityModalProp
 
         <div>
           <label className="block text-xs font-medium text-slate-700 dark:text-slate-300 mb-1">
-            Description / Overview
+            Description / overview
           </label>
           <textarea
             rows={2}
@@ -390,7 +390,7 @@ export function AddOpportunityModal({ isOpen, onClose }: AddOpportunityModalProp
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
           <div>
             <label className="block text-xs font-medium text-slate-700 dark:text-slate-300 mb-1">
-              Eligibility Criteria
+              Eligibility criteria
             </label>
             <textarea
               rows={2}
@@ -417,7 +417,7 @@ export function AddOpportunityModal({ isOpen, onClose }: AddOpportunityModalProp
 
         <div>
           <label className="block text-xs font-medium text-slate-700 dark:text-slate-300 mb-1">
-            Personal Notes & Next Steps
+            Personal notes and next steps
           </label>
           <input
             type="text"
@@ -433,7 +433,7 @@ export function AddOpportunityModal({ isOpen, onClose }: AddOpportunityModalProp
             Cancel
           </Button>
           <Button type="submit" loading={isSubmitting} size="sm">
-            Save Opportunity
+            Save opportunity
           </Button>
         </div>
       </form>

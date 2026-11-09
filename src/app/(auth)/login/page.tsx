@@ -8,7 +8,7 @@ import { isSupabaseConfigured } from '@/lib/supabase/env';
 import { useApp } from '@/lib/store/app-context';
 import { useToast } from '@/components/ui/toast';
 import { Button } from '@/components/ui/button';
-import { Sparkles, ArrowRight, Lock, Mail, AlertCircle } from 'lucide-react';
+import { PlayCircle, ArrowRight, Lock, Mail, AlertCircle } from 'lucide-react';
 
 export default function LoginPage() {
   const router = useRouter();
@@ -30,7 +30,7 @@ export default function LoginPage() {
     if (!isSupabaseReady) {
       // In local mode without credentials, enter demo session
       enterDemoMode();
-      success('Entered local demonstration mode!');
+      success('Demo mode on');
       router.push('/dashboard');
       return;
     }
@@ -60,7 +60,7 @@ export default function LoginPage() {
 
   const handleDemoAccess = () => {
     enterDemoMode();
-    success('Logged into demo account!');
+    success('Signed in to the demo account');
     router.push('/dashboard');
   };
 
@@ -70,18 +70,18 @@ export default function LoginPage() {
         {/* Brand */}
         <div className="text-center">
           <Link href="/" className="inline-flex items-center gap-2 mb-2">
-            <div className="h-7 w-7 rounded bg-slate-900 dark:bg-slate-50 flex items-center justify-center text-white dark:text-slate-950 text-xs font-bold tracking-wider">
+            <div className="h-7 w-7 rounded bg-slate-900 dark:bg-slate-50 flex items-center justify-center text-white dark:text-slate-950 text-xs font-semibold">
               AP
             </div>
-            <span className="font-bold text-lg tracking-tight text-slate-900 dark:text-slate-100">
-              Apply<span className="text-blue-600">Pilot</span>
+            <span className="font-semibold text-lg text-slate-900 dark:text-slate-100">
+              ApplyPilot
             </span>
           </Link>
-          <h2 className="text-xl font-bold tracking-tight text-slate-900 dark:text-slate-100">
+          <h2 className="text-xl font-semibold text-slate-900 dark:text-slate-100">
             Sign in to your account
           </h2>
           <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">
-            Your opportunities. Organised. Never missed.
+            Every application deadline in one place
           </p>
         </div>
 
@@ -94,10 +94,10 @@ export default function LoginPage() {
             </div>
           )}
 
-          <form onSubmit={handleLogin} className="space-y-3.5">
+          <form onSubmit={handleLogin} className="space-y-4">
             <div>
               <label className="block text-xs font-medium text-slate-700 dark:text-slate-300 mb-1">
-                Email Address
+                Email address
               </label>
               <div className="relative">
                 <Mail className="absolute left-3 top-2.5 h-4 w-4 text-slate-400" />
@@ -140,9 +140,9 @@ export default function LoginPage() {
             <Button
               type="submit"
               loading={loading}
-              className="w-full text-xs h-9 bg-slate-900 hover:bg-slate-800 text-white dark:bg-slate-50 dark:text-slate-900 dark:hover:bg-slate-200"
+              className="w-full h-9 text-sm"
             >
-              Sign In
+              Sign in
             </Button>
           </form>
 
@@ -150,9 +150,9 @@ export default function LoginPage() {
             <div className="absolute inset-0 flex items-center">
               <div className="w-full border-t border-slate-200 dark:border-slate-800" />
             </div>
-            <div className="relative flex justify-center text-[10px] uppercase">
+            <div className="relative flex justify-center text-[11px]">
               <span className="bg-white px-2 text-slate-400 dark:bg-slate-900">
-                Or explore instantly
+                Or try it first
               </span>
             </div>
           </div>
@@ -163,8 +163,8 @@ export default function LoginPage() {
             onClick={handleDemoAccess}
             className="w-full text-xs h-9 gap-1.5 text-slate-700 dark:text-slate-300"
           >
-            <Sparkles className="h-3.5 w-3.5 text-blue-600" />
-            Continue in Demo Mode
+            <PlayCircle className="h-4 w-4 text-blue-600" />
+            Continue in demo mode
           </Button>
         </div>
 
@@ -172,7 +172,7 @@ export default function LoginPage() {
         <p className="text-center text-xs text-slate-500">
           Don&apos;t have an account?{' '}
           <Link href="/signup" className="font-semibold text-blue-600 hover:underline">
-            Sign up free
+            Create one
           </Link>
         </p>
       </div>

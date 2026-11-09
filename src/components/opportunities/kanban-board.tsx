@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { Opportunity, ApplicationStatus } from '@/types/database';
 import { CategoryBadge } from './category-badge';
 import { formatDate, getDaysRemaining, useCurrentDate } from '@/lib/utils';
-import { Calendar, Sparkles, MoreHorizontal, ArrowRight, ArrowLeft } from 'lucide-react';
+import { Calendar, PenLine, MoreHorizontal, ArrowRight, ArrowLeft } from 'lucide-react';
 import { useApp } from '@/lib/store/app-context';
 import { useToast } from '@/components/ui/toast';
 
@@ -73,7 +73,7 @@ export function KanbanBoard({ opportunities }: KanbanBoardProps) {
             </div>
 
             {/* Cards Container */}
-            <div className="p-2.5 space-y-2.5 overflow-y-auto flex-1">
+            <div className="p-3 space-y-3 overflow-y-auto flex-1">
               {columnOpps.length === 0 ? (
                 <div className="py-8 text-center text-slate-400 text-xs italic">
                   No items
@@ -88,7 +88,7 @@ export function KanbanBoard({ opportunities }: KanbanBoardProps) {
                   return (
                     <div
                       key={opp.id}
-                      className="group rounded-md border border-slate-200 bg-white p-3 shadow-xs hover:border-slate-300 dark:border-slate-800 dark:bg-slate-900 dark:hover:border-slate-700 transition-all flex flex-col gap-2"
+                      className="group rounded-md border border-slate-200 bg-white p-3 shadow-xs hover:border-slate-300 dark:border-slate-800 dark:bg-slate-900 dark:hover:border-slate-700 transition flex flex-col gap-2"
                     >
                       <div className="flex items-start justify-between gap-1">
                         <Link
@@ -102,7 +102,7 @@ export function KanbanBoard({ opportunities }: KanbanBoardProps) {
                           title="Generate AI Draft"
                           className="text-slate-400 hover:text-blue-600 shrink-0"
                         >
-                          <Sparkles className="h-3.5 w-3.5" />
+                          <PenLine className="h-4 w-4" />
                         </Link>
                       </div>
 
@@ -114,7 +114,7 @@ export function KanbanBoard({ opportunities }: KanbanBoardProps) {
                         <CategoryBadge category={opp.category} />
 
                         {opp.deadline ? (
-                          <div className="flex items-center gap-1 text-[10px] text-slate-500">
+                          <div className="flex items-center gap-1 text-[11px] text-slate-500">
                             <Calendar className="h-3 w-3 text-slate-400" />
                             <span
                               className={
@@ -134,7 +134,7 @@ export function KanbanBoard({ opportunities }: KanbanBoardProps) {
                         <button
                           onClick={() => handleMove(opp, 'prev')}
                           disabled={COLUMNS[0].status === opp.status}
-                          className="text-[10px] text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 disabled:opacity-20 flex items-center gap-0.5"
+                          className="text-[11px] text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 disabled:opacity-20 flex items-center gap-0.5"
                           title="Move left"
                         >
                           <ArrowLeft className="h-3 w-3" /> Prev
@@ -142,7 +142,7 @@ export function KanbanBoard({ opportunities }: KanbanBoardProps) {
                         <button
                           onClick={() => handleMove(opp, 'next')}
                           disabled={COLUMNS[COLUMNS.length - 1].status === opp.status}
-                          className="text-[10px] text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 disabled:opacity-20 flex items-center gap-0.5"
+                          className="text-[11px] text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 disabled:opacity-20 flex items-center gap-0.5"
                           title="Move right"
                         >
                           Next <ArrowRight className="h-3 w-3" />

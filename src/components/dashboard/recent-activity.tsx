@@ -3,7 +3,7 @@
 import React from 'react';
 import { useApp } from '@/lib/store/app-context';
 import { formatDate } from '@/lib/utils';
-import { History, Activity, Sparkles, CheckCircle, PlusCircle, ArrowRight } from 'lucide-react';
+import { History, Activity, PenLine, CheckCircle, PlusCircle, ArrowRight } from 'lucide-react';
 import Link from 'next/link';
 
 export function RecentActivity() {
@@ -12,13 +12,13 @@ export function RecentActivity() {
   const getActionIcon = (type: string) => {
     switch (type) {
       case 'created':
-        return <PlusCircle className="h-3.5 w-3.5 text-blue-600" />;
+        return <PlusCircle className="h-4 w-4 text-slate-400" />;
       case 'status_changed':
-        return <Activity className="h-3.5 w-3.5 text-amber-500" />;
+        return <Activity className="h-4 w-4 text-slate-400" />;
       case 'draft_saved':
-        return <Sparkles className="h-3.5 w-3.5 text-purple-500" />;
+        return <PenLine className="h-4 w-4 text-slate-400" />;
       default:
-        return <History className="h-3.5 w-3.5 text-slate-400" />;
+        return <History className="h-4 w-4 text-slate-400" />;
     }
   };
 
@@ -28,7 +28,7 @@ export function RecentActivity() {
         <div>
           <h2 className="text-sm font-semibold text-slate-900 dark:text-slate-100 flex items-center gap-1.5">
             <History className="h-4 w-4 text-slate-500" />
-            Recent Activity
+            Recent activity
           </h2>
           <p className="text-[11px] text-slate-500 dark:text-slate-400 mt-0.5">
             Track status updates, additions, and generated drafts.
@@ -43,7 +43,7 @@ export function RecentActivity() {
       ) : (
         <div className="space-y-3 flex-1 overflow-y-auto max-h-[360px]">
           {activities.map((act) => (
-            <div key={act.id} className="flex items-start gap-2.5 text-xs">
+            <div key={act.id} className="flex items-start gap-3 text-xs">
               <div className="mt-0.5 p-1 rounded bg-slate-50 dark:bg-slate-800 border border-slate-200/60 dark:border-slate-700/60 shrink-0">
                 {getActionIcon(act.action_type)}
               </div>
@@ -51,7 +51,7 @@ export function RecentActivity() {
                 <p className="text-slate-800 dark:text-slate-200 leading-snug break-words">
                   {act.description}
                 </p>
-                <span className="text-[10px] text-slate-400">
+                <span className="text-[11px] text-slate-400">
                   {formatDate(act.created_at)}
                 </span>
               </div>

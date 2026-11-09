@@ -7,7 +7,7 @@ import { useToast } from '@/components/ui/toast';
 import { Button } from '@/components/ui/button';
 import { DataService } from '@/lib/store/data-service';
 import {
-  Sparkles,
+  PenLine,
   Copy,
   Check,
   Save,
@@ -30,25 +30,25 @@ const DRAFT_TYPES: { id: DraftType; label: string; icon: React.ReactNode; desc: 
   {
     id: 'cold_email',
     label: 'Cold Email to Recruiter',
-    icon: <Mail className="h-3.5 w-3.5" />,
+    icon: <Mail className="h-4 w-4" />,
     desc: 'Compelling outreach highlighting your projects for this specific role.',
   },
   {
     id: 'application_answer',
     label: 'Application Question / Why Us',
-    icon: <FileText className="h-3.5 w-3.5" />,
+    icon: <FileText className="h-4 w-4" />,
     desc: 'Structured answer mapping your skills and achievements to their criteria.',
   },
   {
     id: 'follow_up',
     label: 'Polite Follow-up',
-    icon: <Send className="h-3.5 w-3.5" />,
+    icon: <Send className="h-4 w-4" />,
     desc: 'Check in on a submitted application or recent interview without being pushy.',
   },
   {
     id: 'organiser_email',
     label: 'Organiser / Sponsor Inquiry',
-    icon: <MessageSquare className="h-3.5 w-3.5" />,
+    icon: <MessageSquare className="h-4 w-4" />,
     desc: 'Inquire about travel grants, project tracks, or eligibility guidelines.',
   },
 ];
@@ -126,7 +126,7 @@ export function WritingAssistant({ opportunity }: WritingAssistantProps) {
       setGeneratedSubject(data.subject || '');
       setGeneratedBody(data.body || '');
       setKeyPointsUsed(data.keyPointsUsed || []);
-      success('AI draft generated using your profile vault!');
+      success('Draft written from your profile');
     } catch (err: unknown) {
       const e = err as Error;
       error(e.message || 'Generation failed');
@@ -161,7 +161,7 @@ export function WritingAssistant({ opportunity }: WritingAssistantProps) {
       });
 
       setSavedDrafts([saved, ...savedDrafts]);
-      success('Draft saved to this opportunity!');
+      success('Draft saved');
     } catch {
       error('Failed to save draft');
     } finally {
@@ -183,7 +183,7 @@ export function WritingAssistant({ opportunity }: WritingAssistantProps) {
         <div className="flex items-center justify-between pb-3 border-b border-slate-100 dark:border-slate-800 mb-4">
           <div>
             <h3 className="text-sm font-semibold text-slate-900 dark:text-slate-100 flex items-center gap-2">
-              <Sparkles className="h-4 w-4 text-blue-600 dark:text-blue-400" />
+              <PenLine className="h-4 w-4 text-blue-600 dark:text-blue-400" />
               AI Writing Assistant
             </h3>
             <p className="text-xs text-slate-500 dark:text-slate-400 mt-0.5">
@@ -207,7 +207,7 @@ export function WritingAssistant({ opportunity }: WritingAssistantProps) {
             <button
               key={type.id}
               onClick={() => setSelectedType(type.id)}
-              className={`text-left p-3 rounded-md border text-xs transition-all flex flex-col justify-between ${
+              className={`text-left p-3 rounded-md border text-xs transition flex flex-col justify-between ${
                 selectedType === type.id
                   ? 'border-blue-600 bg-blue-50/50 text-blue-950 dark:border-blue-500 dark:bg-blue-950/30 dark:text-blue-100 font-medium ring-1 ring-blue-600'
                   : 'border-slate-200 bg-white hover:border-slate-300 text-slate-700 dark:border-slate-800 dark:bg-slate-900 dark:text-slate-300 dark:hover:border-slate-700'
@@ -228,7 +228,7 @@ export function WritingAssistant({ opportunity }: WritingAssistantProps) {
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-2">
           <div>
             <label className="block text-xs font-medium text-slate-700 dark:text-slate-300 mb-1">
-              Desired Tone
+              Desired tone
             </label>
             <div className="grid grid-cols-2 gap-1.5">
               {TONES.map((tone) => (
@@ -236,7 +236,7 @@ export function WritingAssistant({ opportunity }: WritingAssistantProps) {
                   key={tone}
                   type="button"
                   onClick={() => setSelectedTone(tone)}
-                  className={`px-2.5 py-1 text-xs rounded border transition-colors ${
+                  className={`px-3 py-1 text-xs rounded border transition-colors ${
                     selectedTone === tone
                       ? 'border-slate-900 bg-slate-900 text-white dark:border-slate-100 dark:bg-slate-100 dark:text-slate-900 font-medium'
                       : 'border-slate-200 bg-white text-slate-700 hover:bg-slate-50 dark:border-slate-800 dark:bg-slate-950 dark:text-slate-300'
@@ -261,8 +261,8 @@ export function WritingAssistant({ opportunity }: WritingAssistantProps) {
                 className="flex-1 px-3 py-1.5 text-xs rounded-md border border-slate-200 bg-white dark:bg-slate-950 dark:border-slate-800 text-slate-900 dark:text-slate-100 placeholder:text-slate-400 focus:outline-none focus:ring-1 focus:ring-blue-600"
               />
               <Button onClick={handleGenerate} loading={isGenerating} size="sm">
-                <Sparkles className="h-3.5 w-3.5 mr-1" />
-                Generate Draft
+                <PenLine className="h-4 w-4 mr-1" />
+                Generate draft
               </Button>
             </div>
           </div>
@@ -275,7 +275,7 @@ export function WritingAssistant({ opportunity }: WritingAssistantProps) {
           <div className="flex items-center justify-between pb-3 border-b border-slate-100 dark:border-slate-800">
             <div>
               <span className="text-xs font-semibold text-slate-900 dark:text-slate-100">
-                Generated Draft
+                Generated draft
               </span>
               <span className="ml-2 text-[11px] text-slate-500">
                 You can review, edit freely, and copy or save below.
@@ -288,7 +288,7 @@ export function WritingAssistant({ opportunity }: WritingAssistantProps) {
                 onClick={handleCopy}
                 className="text-xs gap-1.5"
               >
-                {copied ? <Check className="h-3.5 w-3.5 text-emerald-600" /> : <Copy className="h-3.5 w-3.5" />}
+                {copied ? <Check className="h-4 w-4 text-emerald-600" /> : <Copy className="h-4 w-4" />}
                 {copied ? 'Copied' : 'Copy Draft'}
               </Button>
               <Button
@@ -298,8 +298,8 @@ export function WritingAssistant({ opportunity }: WritingAssistantProps) {
                 loading={isSaving}
                 className="text-xs gap-1.5"
               >
-                <Save className="h-3.5 w-3.5" />
-                Save Draft
+                <Save className="h-4 w-4" />
+                Save draft
               </Button>
             </div>
           </div>
@@ -312,9 +312,10 @@ export function WritingAssistant({ opportunity }: WritingAssistantProps) {
               {keyPointsUsed.map((point, idx) => (
                 <span
                   key={idx}
-                  className="bg-slate-100 dark:bg-slate-800 px-2 py-0.5 rounded text-slate-700 dark:text-slate-300"
+                  className="inline-flex items-center gap-1 bg-slate-100 dark:bg-slate-800 px-2 py-0.5 rounded text-slate-700 dark:text-slate-300"
                 >
-                  ✓ {point}
+                  <Check className="h-3 w-3 text-slate-500" />
+                  {point}
                 </span>
               ))}
             </div>
@@ -323,7 +324,7 @@ export function WritingAssistant({ opportunity }: WritingAssistantProps) {
           {generatedSubject && (
             <div>
               <label className="block text-xs font-medium text-slate-600 dark:text-slate-400 mb-1">
-                Subject Line
+                Subject line
               </label>
               <input
                 type="text"
@@ -357,7 +358,7 @@ export function WritingAssistant({ opportunity }: WritingAssistantProps) {
       {/* Previously Saved Drafts for this opportunity */}
       <div className="rounded-lg border border-slate-200 bg-white p-5 dark:border-slate-800 dark:bg-slate-900 shadow-xs">
         <h4 className="text-xs font-semibold text-slate-900 dark:text-slate-100 mb-3 flex items-center gap-1.5">
-          <Clock className="h-3.5 w-3.5 text-slate-400" />
+          <Clock className="h-4 w-4 text-slate-400" />
           Saved Drafts for {opportunity.title} ({savedDrafts.length})
         </h4>
 
@@ -374,10 +375,10 @@ export function WritingAssistant({ opportunity }: WritingAssistantProps) {
               >
                 <div className="flex-1">
                   <div className="flex items-center gap-2 mb-1">
-                    <span className="font-semibold text-slate-900 dark:text-slate-100 uppercase text-[10px] tracking-wider px-1.5 py-0.5 rounded bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700">
+                    <span className="font-semibold text-slate-900 dark:text-slate-100 text-[11px] px-1.5 py-0.5 rounded bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700">
                       {draft.draft_type.replace('_', ' ')}
                     </span>
-                    <span className="text-[10px] text-slate-400">
+                    <span className="text-[11px] text-slate-400">
                       {formatDate(draft.created_at)}
                     </span>
                   </div>
@@ -408,7 +409,7 @@ export function WritingAssistant({ opportunity }: WritingAssistantProps) {
                     className="p-1 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200"
                     title="Copy to clipboard"
                   >
-                    <Copy className="h-3.5 w-3.5" />
+                    <Copy className="h-4 w-4" />
                   </button>
                 </div>
               </div>

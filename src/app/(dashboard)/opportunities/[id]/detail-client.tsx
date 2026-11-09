@@ -16,7 +16,7 @@ import {
   Calendar,
   MapPin,
   ExternalLink,
-  Sparkles,
+  PenLine,
   Trash2,
   Save,
   CheckCircle,
@@ -79,14 +79,14 @@ export default function OpportunityDetailClient({ id }: DetailClientProps) {
       <div className="flex-1 flex flex-col items-center justify-center p-8 text-center">
         <AlertCircle className="h-10 w-10 text-slate-400 mb-3" />
         <h2 className="text-base font-semibold text-slate-800 dark:text-slate-200">
-          Opportunity Not Found
+          Opportunity not found
         </h2>
         <p className="text-xs text-slate-500 mt-1 max-w-sm">
           This opportunity may have been removed or you may not have permission to view it.
         </p>
         <Link href="/opportunities" className="mt-4">
           <Button variant="outline" size="sm">
-            <ArrowLeft className="h-3.5 w-3.5 mr-1.5" /> Back to Opportunities
+            <ArrowLeft className="h-4 w-4 mr-1.5" /> Back to Opportunities
           </Button>
         </Link>
       </div>
@@ -135,7 +135,7 @@ export default function OpportunityDetailClient({ id }: DetailClientProps) {
           href="/opportunities"
           className="text-xs text-slate-500 hover:text-slate-800 dark:hover:text-slate-200 flex items-center gap-1.5 font-medium"
         >
-          <ArrowLeft className="h-3.5 w-3.5" />
+          <ArrowLeft className="h-4 w-4" />
           Back to all opportunities
         </Link>
 
@@ -145,10 +145,10 @@ export default function OpportunityDetailClient({ id }: DetailClientProps) {
               href={opp.url}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-xs px-2.5 py-1.5 rounded border border-slate-200 bg-white hover:bg-slate-50 dark:border-slate-800 dark:bg-slate-900 text-slate-700 dark:text-slate-300 flex items-center gap-1.5"
+              className="text-xs px-3 py-1.5 rounded border border-slate-200 bg-white hover:bg-slate-50 dark:border-slate-800 dark:bg-slate-900 text-slate-700 dark:text-slate-300 flex items-center gap-1.5"
             >
-              <ExternalLink className="h-3.5 w-3.5 text-slate-400" />
-              Original Posting
+              <ExternalLink className="h-4 w-4 text-slate-400" />
+              Original posting
             </a>
           )}
           <Button
@@ -157,7 +157,7 @@ export default function OpportunityDetailClient({ id }: DetailClientProps) {
             onClick={handleDelete}
             className="text-xs h-8 bg-red-600 hover:bg-red-700 text-white"
           >
-            <Trash2 className="h-3.5 w-3.5 mr-1" />
+            <Trash2 className="h-4 w-4 mr-1" />
             Delete
           </Button>
         </div>
@@ -189,7 +189,7 @@ export default function OpportunityDetailClient({ id }: DetailClientProps) {
               )}
             </div>
 
-            <h1 className="text-xl font-bold tracking-tight text-slate-900 dark:text-slate-100">
+            <h1 className="text-xl font-semibold text-slate-900 dark:text-slate-100">
               {opp.title}
             </h1>
             <p className="text-sm font-medium text-slate-600 dark:text-slate-400">
@@ -198,21 +198,21 @@ export default function OpportunityDetailClient({ id }: DetailClientProps) {
 
             {opp.location && (
               <p className="text-xs text-slate-500 flex items-center gap-1.5 pt-1">
-                <MapPin className="h-3.5 w-3.5 text-slate-400" />
+                <MapPin className="h-4 w-4 text-slate-400" />
                 {opp.location}
               </p>
             )}
           </div>
 
           {/* Status Quick Updater Box */}
-          <div className="rounded-md border border-slate-100 bg-slate-50/75 p-3.5 dark:border-slate-800 dark:bg-slate-950 min-w-[220px]">
-            <label className="block text-[11px] font-semibold uppercase tracking-wider text-slate-500 mb-1.5">
-              Application Status
+          <div className="rounded-md border border-slate-100 bg-slate-50/75 p-4 dark:border-slate-800 dark:bg-slate-950 min-w-[220px]">
+            <label className="block text-[11px] font-semibold text-slate-500 mb-1.5">
+              Application status
             </label>
             <select
               value={status}
               onChange={(e) => setStatus(e.target.value as ApplicationStatus)}
-              className="w-full px-2.5 py-1.5 text-xs rounded border border-slate-200 bg-white dark:bg-slate-900 dark:border-slate-700 font-medium text-slate-800 dark:text-slate-200 focus:outline-none focus:ring-1 focus:ring-blue-600"
+              className="w-full px-3 py-1.5 text-xs rounded border border-slate-200 bg-white dark:bg-slate-900 dark:border-slate-700 font-medium text-slate-800 dark:text-slate-200 focus:outline-none focus:ring-1 focus:ring-blue-600"
             >
               {STATUS_OPTIONS.map((st) => (
                 <option key={st} value={st}>
@@ -221,7 +221,7 @@ export default function OpportunityDetailClient({ id }: DetailClientProps) {
               ))}
             </select>
 
-            <div className="mt-2.5 pt-2.5 border-t border-slate-200/60 dark:border-slate-800 flex items-center justify-between text-[11px] text-slate-500">
+            <div className="mt-3 pt-3 border-t border-slate-200/60 dark:border-slate-800 flex items-center justify-between text-[11px] text-slate-500">
               <span>Auto-reminders</span>
               <span className="text-emerald-600 font-medium">Active (7d, 3d, 1d)</span>
             </div>
@@ -232,24 +232,24 @@ export default function OpportunityDetailClient({ id }: DetailClientProps) {
         <div className="flex border-b border-slate-200 dark:border-slate-800 mt-6 -mb-6">
           <button
             onClick={() => setActiveTab('overview')}
-            className={`flex items-center gap-1.5 px-4 py-2.5 text-xs font-medium border-b-2 transition-colors ${
+            className={`flex items-center gap-1.5 px-4 py-3 text-xs font-medium border-b-2 transition-colors ${
               activeTab === 'overview'
                 ? 'border-blue-600 text-blue-600 dark:text-blue-400 font-semibold'
                 : 'border-transparent text-slate-500 hover:text-slate-800 dark:text-slate-400 dark:hover:text-slate-200'
             }`}
           >
-            <FileText className="h-3.5 w-3.5" />
-            Overview & Application Tracking
+            <FileText className="h-4 w-4" />
+            Overview and application tracking
           </button>
           <button
             onClick={() => setActiveTab('ai')}
-            className={`flex items-center gap-1.5 px-4 py-2.5 text-xs font-medium border-b-2 transition-colors ${
+            className={`flex items-center gap-1.5 px-4 py-3 text-xs font-medium border-b-2 transition-colors ${
               activeTab === 'ai'
                 ? 'border-blue-600 text-blue-600 dark:text-blue-400 font-semibold'
                 : 'border-transparent text-slate-500 hover:text-slate-800 dark:text-slate-400 dark:hover:text-slate-200'
             }`}
           >
-            <Sparkles className="h-3.5 w-3.5" />
+            <PenLine className="h-4 w-4" />
             AI Writing Assistant
           </button>
         </div>
@@ -263,41 +263,41 @@ export default function OpportunityDetailClient({ id }: DetailClientProps) {
             <div className="lg:col-span-2 space-y-5">
               <div className="rounded-lg border border-slate-200 bg-white p-5 shadow-xs dark:border-slate-800 dark:bg-slate-900 space-y-4">
                 <div>
-                  <h3 className="text-xs font-semibold text-slate-900 dark:text-slate-100 uppercase tracking-wider mb-2">
-                    Description & Overview
+                  <h3 className="text-xs font-semibold text-slate-900 dark:text-slate-100 mb-2">
+                    Description and overview
                   </h3>
                   <textarea
                     rows={4}
                     value={description}
                     onChange={(e) => setDescription(e.target.value)}
                     placeholder="Opportunity overview and requirements..."
-                    className="w-full p-2.5 text-xs rounded-md border border-slate-200 bg-slate-50/50 dark:bg-slate-950 dark:border-slate-800 text-slate-800 dark:text-slate-200 focus:outline-none focus:ring-1 focus:ring-blue-600 resize-y leading-relaxed"
+                    className="w-full p-3 text-xs rounded-md border border-slate-200 bg-slate-50/50 dark:bg-slate-950 dark:border-slate-800 text-slate-800 dark:text-slate-200 focus:outline-none focus:ring-1 focus:ring-blue-600 resize-y leading-relaxed"
                   />
                 </div>
 
                 <div>
-                  <h3 className="text-xs font-semibold text-slate-900 dark:text-slate-100 uppercase tracking-wider mb-2">
-                    Eligibility Criteria
+                  <h3 className="text-xs font-semibold text-slate-900 dark:text-slate-100 mb-2">
+                    Eligibility criteria
                   </h3>
                   <textarea
                     rows={3}
                     value={eligibility}
                     onChange={(e) => setEligibility(e.target.value)}
                     placeholder="GPA requirements, student status, graduating classes..."
-                    className="w-full p-2.5 text-xs rounded-md border border-slate-200 bg-slate-50/50 dark:bg-slate-950 dark:border-slate-800 text-slate-800 dark:text-slate-200 focus:outline-none focus:ring-1 focus:ring-blue-600 resize-y leading-relaxed"
+                    className="w-full p-3 text-xs rounded-md border border-slate-200 bg-slate-50/50 dark:bg-slate-950 dark:border-slate-800 text-slate-800 dark:text-slate-200 focus:outline-none focus:ring-1 focus:ring-blue-600 resize-y leading-relaxed"
                   />
                 </div>
 
                 <div>
-                  <h3 className="text-xs font-semibold text-slate-900 dark:text-slate-100 uppercase tracking-wider mb-2">
-                    Personal Notes & Next Steps
+                  <h3 className="text-xs font-semibold text-slate-900 dark:text-slate-100 mb-2">
+                    Personal notes and next steps
                   </h3>
                   <textarea
                     rows={3}
                     value={notes}
                     onChange={(e) => setNotes(e.target.value)}
                     placeholder="e.g. Discuss with advisor, review essay draft, reach out to Stanford alumni at firm..."
-                    className="w-full p-2.5 text-xs rounded-md border border-slate-200 bg-slate-50/50 dark:bg-slate-950 dark:border-slate-800 text-slate-800 dark:text-slate-200 focus:outline-none focus:ring-1 focus:ring-blue-600 resize-y leading-relaxed"
+                    className="w-full p-3 text-xs rounded-md border border-slate-200 bg-slate-50/50 dark:bg-slate-950 dark:border-slate-800 text-slate-800 dark:text-slate-200 focus:outline-none focus:ring-1 focus:ring-blue-600 resize-y leading-relaxed"
                   />
                 </div>
 
@@ -308,8 +308,8 @@ export default function OpportunityDetailClient({ id }: DetailClientProps) {
                     loading={isSaving}
                     className="text-xs gap-1.5"
                   >
-                    <Save className="h-3.5 w-3.5" />
-                    Save Changes
+                    <Save className="h-4 w-4" />
+                    Save changes
                   </Button>
                 </div>
               </div>
@@ -319,20 +319,20 @@ export default function OpportunityDetailClient({ id }: DetailClientProps) {
             <div className="space-y-5">
               {/* Important Timeline Dates Card */}
               <div className="rounded-lg border border-slate-200 bg-white p-5 shadow-xs dark:border-slate-800 dark:bg-slate-900 space-y-3">
-                <h3 className="text-xs font-semibold text-slate-900 dark:text-slate-100 uppercase tracking-wider mb-2 flex items-center gap-1.5">
-                  <Clock className="h-3.5 w-3.5 text-slate-400" />
-                  Key Dates & Milestones
+                <h3 className="text-xs font-semibold text-slate-900 dark:text-slate-100 mb-2 flex items-center gap-1.5">
+                  <Clock className="h-4 w-4 text-slate-400" />
+                  Key dates and milestones
                 </h3>
 
                 <div>
                   <label className="block text-[11px] font-medium text-slate-600 dark:text-slate-400 mb-1">
-                    Application Deadline
+                    Application deadline
                   </label>
                   <input
                     type="date"
                     value={deadline}
                     onChange={(e) => setDeadline(e.target.value)}
-                    className="w-full px-2.5 py-1.5 text-xs rounded border border-slate-200 bg-white dark:bg-slate-950 dark:border-slate-800 text-slate-900 dark:text-slate-100 focus:outline-none focus:ring-1 focus:ring-blue-600"
+                    className="w-full px-3 py-1.5 text-xs rounded border border-slate-200 bg-white dark:bg-slate-950 dark:border-slate-800 text-slate-900 dark:text-slate-100 focus:outline-none focus:ring-1 focus:ring-blue-600"
                   />
                 </div>
 
@@ -344,7 +344,7 @@ export default function OpportunityDetailClient({ id }: DetailClientProps) {
                     type="date"
                     value={appliedDate}
                     onChange={(e) => setAppliedDate(e.target.value)}
-                    className="w-full px-2.5 py-1.5 text-xs rounded border border-slate-200 bg-white dark:bg-slate-950 dark:border-slate-800 text-slate-900 dark:text-slate-100 focus:outline-none focus:ring-1 focus:ring-blue-600"
+                    className="w-full px-3 py-1.5 text-xs rounded border border-slate-200 bg-white dark:bg-slate-950 dark:border-slate-800 text-slate-900 dark:text-slate-100 focus:outline-none focus:ring-1 focus:ring-blue-600"
                   />
                 </div>
 
@@ -356,9 +356,9 @@ export default function OpportunityDetailClient({ id }: DetailClientProps) {
                     type="date"
                     value={followUpDate}
                     onChange={(e) => setFollowUpDate(e.target.value)}
-                    className="w-full px-2.5 py-1.5 text-xs rounded border border-slate-200 bg-white dark:bg-slate-950 dark:border-slate-800 text-slate-900 dark:text-slate-100 focus:outline-none focus:ring-1 focus:ring-blue-600"
+                    className="w-full px-3 py-1.5 text-xs rounded border border-slate-200 bg-white dark:bg-slate-950 dark:border-slate-800 text-slate-900 dark:text-slate-100 focus:outline-none focus:ring-1 focus:ring-blue-600"
                   />
-                  <p className="text-[10px] text-slate-400 mt-1">
+                  <p className="text-[11px] text-slate-400 mt-1">
                     Triggers a follow-up reminder on the dashboard.
                   </p>
                 </div>
@@ -371,15 +371,15 @@ export default function OpportunityDetailClient({ id }: DetailClientProps) {
                     loading={isSaving}
                     className="w-full text-xs"
                   >
-                    Update Dates
+                    Update dates
                   </Button>
                 </div>
               </div>
 
               {/* Required Documents Card */}
               <div className="rounded-lg border border-slate-200 bg-white p-5 shadow-xs dark:border-slate-800 dark:bg-slate-900">
-                <h3 className="text-xs font-semibold text-slate-900 dark:text-slate-100 uppercase tracking-wider mb-2">
-                  Required Documents
+                <h3 className="text-xs font-semibold text-slate-900 dark:text-slate-100 mb-2">
+                  Required documents
                 </h3>
                 {opp.required_documents && opp.required_documents.length > 0 ? (
                   <ul className="space-y-1.5 text-xs">
@@ -388,7 +388,7 @@ export default function OpportunityDetailClient({ id }: DetailClientProps) {
                         key={idx}
                         className="flex items-center gap-2 text-slate-700 dark:text-slate-300"
                       >
-                        <CheckCircle className="h-3.5 w-3.5 text-blue-600 shrink-0" />
+                        <CheckCircle className="h-4 w-4 text-blue-600 shrink-0" />
                         <span>{doc}</span>
                       </li>
                     ))}
@@ -401,8 +401,8 @@ export default function OpportunityDetailClient({ id }: DetailClientProps) {
               {/* Relevant Links Card */}
               {opp.relevant_links && opp.relevant_links.length > 0 && (
                 <div className="rounded-lg border border-slate-200 bg-white p-5 shadow-xs dark:border-slate-800 dark:bg-slate-900">
-                  <h3 className="text-xs font-semibold text-slate-900 dark:text-slate-100 uppercase tracking-wider mb-2">
-                    Saved Resources & Links
+                  <h3 className="text-xs font-semibold text-slate-900 dark:text-slate-100 mb-2">
+                    Saved resources and links
                   </h3>
                   <div className="space-y-1.5">
                     {opp.relevant_links.map((link, idx) => (

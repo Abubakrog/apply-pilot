@@ -3,226 +3,194 @@
 import React from 'react';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
-import {
-  Sparkles,
-  ArrowRight,
-  Clock,
-  Briefcase,
-  Mail,
-  CheckCircle2,
-  Shield,
-  Columns,
-  Link as LinkIcon,
-  UserCheck,
-  ChevronDown,
-} from 'lucide-react';
+import { ArrowRight, Link as LinkIcon, PenLine, Mail, Columns, IdCard, Lock } from 'lucide-react';
 import { CategoryBadge } from '@/components/opportunities/category-badge';
 import { StatusBadge } from '@/components/opportunities/status-badge';
+import { ClosingBoard, type BoardRow } from '@/components/deadlines/closing-board';
+import { FlapCounter } from '@/components/deadlines/flap-counter';
+
+const sampleBoard: BoardRow[] = [
+  { id: 'hackmit', title: 'HackMIT 2026 hacker application', organisation: 'MIT TechX', category: 'Hackathon', status: 'Applied', deadlineLabel: '11 Nov 2026', daysLeft: 2 },
+  { id: 'kp', title: 'Software engineering fellow', organisation: 'KP Fellows', category: 'Fellowship', status: 'Preparing', deadlineLabel: '14 Nov 2026', daysLeft: 5 },
+  { id: 'cf', title: 'Systems and infrastructure intern', organisation: 'Cloudflare', category: 'Internship', status: 'Interested', deadlineLabel: '21 Nov 2026', daysLeft: 12 },
+  { id: 'merit', title: 'Undergraduate merit scholarship', organisation: 'State University Foundation', category: 'Scholarship', status: 'Interested', deadlineLabel: '28 Nov 2026', daysLeft: 19 },
+];
+
+const steps = [
+  {
+    title: 'Save it from the link',
+    body: 'Paste the posting URL. ApplyPilot pulls out the title, organisation, required documents and closing date, and you check them before saving.',
+  },
+  {
+    title: 'Prepare from your profile',
+    body: 'Your profile holds your projects, coursework and awards. Drafts for answers and recruiter emails are written from that, and you edit them.',
+  },
+  {
+    title: 'Get reminded before it closes',
+    body: 'Emails arrive 7, 3 and 1 day before the deadline and on the day itself. Track the status until you hear back.',
+  },
+];
+
+const features = [
+  { icon: LinkIcon, title: 'Postings from a link', body: 'Title, organisation, documents and deadline extracted from the page, without running its scripts.' },
+  { icon: PenLine, title: 'Drafts from your own profile', body: 'Outreach emails, follow-ups and application answers built from the skills and projects you saved.' },
+  { icon: Mail, title: 'Reminders that stop on time', body: 'Each reminder is sent once, and none are sent after you mark an opportunity as applied.' },
+  { icon: Columns, title: 'Table or board', body: 'Sort everything in a dense table, or move cards across a board as applications progress.' },
+  { icon: IdCard, title: 'One profile, reused', body: 'Skills, achievements, course projects and preferences kept in one place for every draft.' },
+  { icon: Lock, title: 'Only you can see it', body: 'Row-level security in the database limits your opportunities, drafts and profile to your account.' },
+];
+
+const faqs = [
+  {
+    q: 'Does ApplyPilot submit applications or send emails for me?',
+    a: 'No. It drafts text for you to review and edit. Submitting applications and sending emails stays with you.',
+  },
+  {
+    q: 'How does the writing assistant know my background?',
+    a: 'You save your projects, experience, graduation year and skills once in your profile. Each draft is written from that profile and the opportunity you are applying to.',
+  },
+  {
+    q: 'When do reminder emails arrive?',
+    a: 'By default 7 days, 3 days and 1 day before a deadline, and on the day. You can change the intervals in settings. Each email links straight to the opportunity.',
+  },
+  {
+    q: 'Can other people see my applications or profile?',
+    a: 'No. Every table is protected by row-level security, so your opportunities, drafts and profile are only readable by your own account.',
+  },
+];
+
+function Logo() {
+  return (
+    <Link href="/" className="flex items-center gap-2">
+      <span className="h-6 w-6 rounded-md bg-slate-900 flex items-center justify-center text-white text-[11px] font-semibold">
+        AP
+      </span>
+      <span className="text-sm font-semibold text-slate-900">ApplyPilot</span>
+    </Link>
+  );
+}
 
 export default function LandingPage() {
   return (
-    <div className="min-h-screen flex flex-col bg-white text-slate-900 antialiased selection:bg-blue-100 selection:text-blue-900">
-      {/* Top Navigation */}
-      <header className="sticky top-0 z-40 w-full border-b border-slate-200/80 bg-white/95 backdrop-blur-xs">
+    <div className="min-h-screen flex flex-col bg-white text-slate-900 antialiased">
+      {/* Navigation */}
+      <header className="sticky top-0 z-40 w-full border-b border-slate-900/8 bg-white/90 backdrop-blur-sm">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 h-14 flex items-center justify-between">
-          <Link href="/" className="flex items-center gap-2">
-            <div className="h-6 w-6 rounded bg-slate-900 flex items-center justify-center text-white text-xs font-bold tracking-wider">
-              AP
-            </div>
-            <span className="font-semibold text-sm tracking-tight text-slate-900">
-              Apply<span className="text-blue-600">Pilot</span>
-            </span>
-          </Link>
+          <Logo />
 
-          <nav className="hidden md:flex items-center gap-6 text-xs font-medium text-slate-600">
-            <a href="#how-it-works" className="hover:text-slate-900 transition-colors">
-              How It Works
-            </a>
-            <a href="#features" className="hover:text-slate-900 transition-colors">
-              Features
-            </a>
-            <a href="#preview" className="hover:text-slate-900 transition-colors">
-              Dashboard
-            </a>
-            <a href="#faq" className="hover:text-slate-900 transition-colors">
-              FAQ
-            </a>
+          <nav className="hidden md:flex items-center gap-6 text-sm text-slate-600">
+            <a href="#how-it-works" className="hover:text-slate-900 transition-colors">How it works</a>
+            <a href="#features" className="hover:text-slate-900 transition-colors">Features</a>
+            <a href="#preview" className="hover:text-slate-900 transition-colors">Dashboard</a>
+            <a href="#faq" className="hover:text-slate-900 transition-colors">FAQ</a>
           </nav>
 
-          <div className="flex items-center gap-3">
-            <Link
-              href="/login"
-              className="text-xs font-medium text-slate-600 hover:text-slate-900 transition-colors"
-            >
-              Sign In
+          <div className="flex items-center gap-4">
+            <Link href="/login" className="text-sm text-slate-600 hover:text-slate-900 transition-colors">
+              Sign in
             </Link>
             <Link href="/signup">
-              <Button size="sm" className="text-xs h-8 bg-blue-600 hover:bg-blue-700 text-white">
-                Get Started Free
-              </Button>
+              <Button size="sm">Create account</Button>
             </Link>
           </div>
         </div>
       </header>
 
-      {/* Hero Section */}
-      <section className="pt-20 pb-16 sm:pt-28 sm:pb-24 border-b border-slate-100 bg-linear-to-b from-slate-50/50 to-white">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 text-center space-y-6">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-slate-200 bg-white text-slate-700 text-xs font-medium shadow-xs">
-            <span className="h-1.5 w-1.5 rounded-full bg-blue-600" />
-            <span>ApplyPilot 1.0 — Free for Students</span>
+      {/* Hero */}
+      <section className="border-b border-slate-900/8">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 py-16 sm:py-20 lg:py-24 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+          <div className="lg:col-span-5">
+            <h1 className="text-4xl sm:text-5xl font-medium tracking-tight leading-[1.06] text-slate-950">
+              Every application deadline, counted down in one place
+            </h1>
+            <p className="mt-5 text-lg leading-7 text-slate-600 max-w-md">
+              Save internships, scholarships, fellowships and hackathons from a link. ApplyPilot tracks each
+              closing date, reminds you by email and drafts answers from the profile you saved.
+            </p>
+            <div className="mt-8 flex flex-col sm:flex-row gap-3">
+              <Link href="/signup">
+                <Button size="lg" className="w-full sm:w-auto h-11 px-5">
+                  Create account
+                  <ArrowRight className="h-4 w-4" />
+                </Button>
+              </Link>
+              <a href="#how-it-works">
+                <Button variant="outline" size="lg" className="w-full sm:w-auto h-11 px-5">
+                  See how it works
+                </Button>
+              </a>
+            </div>
           </div>
 
-          <h1 className="text-3xl sm:text-5xl font-bold tracking-tight text-slate-950 leading-[1.15] max-w-3xl mx-auto">
-            Stop missing opportunities. Start applying smarter.
-          </h1>
-
-          <p className="text-base sm:text-lg text-slate-600 max-w-2xl mx-auto font-normal leading-relaxed">
-            Keep internships, scholarships, and hackathons organised. Track every deadline, create personalised applications, and get reminders before it&apos;s too late.
-          </p>
-
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-3 pt-2">
-            <Link href="/signup" className="w-full sm:w-auto">
-              <Button size="lg" className="w-full sm:w-auto text-sm h-10 px-6 bg-slate-900 hover:bg-slate-800 text-white gap-2 shadow-sm">
-                Get Started Free
-                <ArrowRight className="h-4 w-4" />
-              </Button>
-            </Link>
-            <a href="#how-it-works" className="w-full sm:w-auto">
-              <Button variant="outline" size="lg" className="w-full sm:w-auto text-sm h-10 px-6 text-slate-700 hover:text-slate-900 border-slate-200">
-                See How It Works
-              </Button>
-            </a>
-          </div>
-
-          <div className="pt-4 flex items-center justify-center gap-6 text-xs text-slate-500">
-            <span className="flex items-center gap-1.5">
-              <CheckCircle2 className="h-3.5 w-3.5 text-blue-600" /> Free to use
-            </span>
-            <span className="flex items-center gap-1.5">
-              <CheckCircle2 className="h-3.5 w-3.5 text-blue-600" /> SSRF-protected URL parser
-            </span>
-            <span className="flex items-center gap-1.5">
-              <CheckCircle2 className="h-3.5 w-3.5 text-blue-600" /> Resend email reminders
-            </span>
+          {/* The moment: a departures board of deadlines */}
+          <div className="lg:col-span-7">
+            <div className="rounded-2xl border border-slate-900/10 bg-slate-50 p-2 shadow-[0_8px_24px_rgba(0,0,0,0.06)]">
+              <div className="rounded-xl border border-slate-900/8 bg-white px-5 pt-4 pb-2">
+                <div className="flex items-baseline justify-between pb-4">
+                  <h2 className="text-sm font-medium text-slate-900">Closing soon</h2>
+                  <span className="font-mono text-xs tabular-nums text-slate-500">Mon 9 Nov 2026</span>
+                </div>
+                <ClosingBoard rows={sampleBoard} />
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Realistic Dashboard Preview Section */}
-      <section id="preview" className="py-16 sm:py-20 border-b border-slate-200/80 bg-slate-50/50">
+      {/* Dashboard preview */}
+      <section id="preview" className="py-16 sm:py-24 border-b border-slate-900/8 bg-slate-50">
         <div className="max-w-6xl mx-auto px-4 sm:px-6">
-          <div className="text-center max-w-xl mx-auto mb-10 space-y-2">
-            <h2 className="text-xl sm:text-2xl font-bold tracking-tight text-slate-900">
-              A productivity system built for high-stakes deadlines
+          <div className="max-w-xl mb-10">
+            <h2 className="text-2xl sm:text-3xl font-medium tracking-tight text-slate-900">
+              Status, deadline and next step for every application
             </h2>
-            <p className="text-xs sm:text-sm text-slate-500">
-              Clear statuses, real deadline urgency badges, and quick AI drafting right where you need it.
+            <p className="mt-2 text-sm text-slate-600">
+              The dashboard keeps what you have applied to apart from what still needs work.
             </p>
           </div>
 
-          {/* Interactive/Realistic Mockup Window */}
-          <div className="rounded-xl border border-slate-200 bg-white shadow-xl overflow-hidden">
-            {/* Window chrome header */}
-            <div className="h-10 border-b border-slate-200 bg-slate-50 px-4 flex items-center justify-between">
-              <div className="flex items-center gap-1.5">
-                <div className="h-2.5 w-2.5 rounded-full bg-slate-300" />
-                <div className="h-2.5 w-2.5 rounded-full bg-slate-300" />
-                <div className="h-2.5 w-2.5 rounded-full bg-slate-300" />
-              </div>
-              <span className="text-[11px] font-mono text-slate-400">app.applypilot.dev/dashboard</span>
-              <div className="w-12" />
+          <div className="rounded-xl border border-slate-900/10 bg-white shadow-[0_8px_24px_rgba(0,0,0,0.06)] overflow-hidden">
+            <div className="h-10 border-b border-slate-900/8 bg-slate-50 px-4 flex items-center">
+              <span className="font-mono text-[11px] text-slate-500">app.applypilot.dev/dashboard</span>
             </div>
 
-            {/* Dashboard Mockup Content */}
             <div className="p-6 space-y-6">
-              {/* Stats Bar */}
               <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-                <div className="p-3.5 rounded-lg border border-slate-200 bg-white">
-                  <span className="text-[11px] text-slate-500 font-medium">Opportunities Saved</span>
-                  <p className="text-xl font-bold font-mono text-slate-900 mt-1">5</p>
-                </div>
-                <div className="p-3.5 rounded-lg border border-slate-200 bg-white">
-                  <span className="text-[11px] text-slate-500 font-medium">Applications Submitted</span>
-                  <p className="text-xl font-bold font-mono text-blue-600 mt-1">2</p>
-                </div>
-                <div className="p-3.5 rounded-lg border border-slate-200 bg-white">
-                  <span className="text-[11px] text-slate-500 font-medium">Upcoming Deadlines</span>
-                  <p className="text-xl font-bold font-mono text-amber-500 mt-1">2</p>
-                </div>
-                <div className="p-3.5 rounded-lg border border-slate-200 bg-white">
-                  <span className="text-[11px] text-slate-500 font-medium">Awaiting Follow-Up</span>
-                  <p className="text-xl font-bold font-mono text-purple-600 mt-1">1</p>
-                </div>
+                {[
+                  ['Saved', '5'],
+                  ['Applied', '2'],
+                  ['Closing this week', '2'],
+                  ['Follow-up due', '1'],
+                ].map(([label, value]) => (
+                  <div key={label} className="p-4 rounded-lg border border-slate-900/8">
+                    <span className="text-xs text-slate-500">{label}</span>
+                    <p className="mt-1 text-2xl font-medium font-mono tabular-nums text-slate-900">{value}</p>
+                  </div>
+                ))}
               </div>
 
-              {/* Sample Opportunities Table */}
-              <div className="rounded-lg border border-slate-200 overflow-hidden">
-                <table className="w-full text-left text-xs">
-                  <thead className="bg-slate-50 border-b border-slate-200 text-slate-500">
+              <div className="rounded-lg border border-slate-900/8 overflow-x-auto">
+                <table className="w-full text-left text-sm">
+                  <thead className="border-b border-slate-900/8 text-xs text-slate-500">
                     <tr>
-                      <th className="py-2.5 px-4 font-medium">Opportunity</th>
-                      <th className="py-2.5 px-4 font-medium">Category</th>
-                      <th className="py-2.5 px-4 font-medium">Status</th>
-                      <th className="py-2.5 px-4 font-medium">Deadline</th>
+                      <th className="h-9 px-4 font-normal">Opportunity</th>
+                      <th className="h-9 px-4 font-normal">Category</th>
+                      <th className="h-9 px-4 font-normal">Status</th>
+                      <th className="h-9 px-4 font-normal text-right">Days left</th>
                     </tr>
                   </thead>
-                  <tbody className="divide-y divide-slate-100">
-                    <tr>
-                      <td className="py-3 px-4">
-                        <span className="font-semibold text-slate-900 block">
-                          HackMIT 2026 Hacker Application
-                        </span>
-                        <span className="text-slate-400 text-[11px]">MIT TechX</span>
-                      </td>
-                      <td className="py-3 px-4">
-                        <CategoryBadge category="Hackathon" />
-                      </td>
-                      <td className="py-3 px-4">
-                        <StatusBadge status="Applied" />
-                      </td>
-                      <td className="py-3 px-4">
-                        <span className="text-red-600 font-semibold bg-red-50 border border-red-200 px-2 py-0.5 rounded text-[11px]">
-                          2 days left
-                        </span>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td className="py-3 px-4">
-                        <span className="font-semibold text-slate-900 block">
-                          Software Engineering Fellow
-                        </span>
-                        <span className="text-slate-400 text-[11px]">Kleiner Perkins (KP Fellows)</span>
-                      </td>
-                      <td className="py-3 px-4">
-                        <CategoryBadge category="Fellowship" />
-                      </td>
-                      <td className="py-3 px-4">
-                        <StatusBadge status="Preparing" />
-                      </td>
-                      <td className="py-3 px-4">
-                        <span className="text-amber-600 font-semibold bg-amber-50 border border-amber-200 px-2 py-0.5 rounded text-[11px]">
-                          5 days left
-                        </span>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td className="py-3 px-4">
-                        <span className="font-semibold text-slate-900 block">
-                          Systems & Infrastructure Intern
-                        </span>
-                        <span className="text-slate-400 text-[11px]">Cloudflare</span>
-                      </td>
-                      <td className="py-3 px-4">
-                        <CategoryBadge category="Internship" />
-                      </td>
-                      <td className="py-3 px-4">
-                        <StatusBadge status="Interested" />
-                      </td>
-                      <td className="py-3 px-4">
-                        <span className="text-slate-600 text-[11px]">12 days left</span>
-                      </td>
-                    </tr>
+                  <tbody className="divide-y divide-slate-900/6">
+                    {sampleBoard.slice(0, 3).map((row) => (
+                      <tr key={row.id}>
+                        <td className="py-3 px-4">
+                          <span className="font-medium text-slate-900 block">{row.title}</span>
+                          <span className="text-slate-500 text-xs">{row.organisation}</span>
+                        </td>
+                        <td className="py-3 px-4"><CategoryBadge category={row.category} /></td>
+                        <td className="py-3 px-4"><StatusBadge status={row.status} /></td>
+                        <td className="py-3 px-4 text-right"><FlapCounter daysLeft={row.daysLeft} size="sm" /></td>
+                      </tr>
+                    ))}
                   </tbody>
                 </table>
               </div>
@@ -231,208 +199,65 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* 3-Step Explanation Section */}
-      <section id="how-it-works" className="py-16 sm:py-24 border-b border-slate-200/80">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6">
-          <div className="text-center max-w-xl mx-auto mb-16 space-y-2">
-            <span className="text-xs font-semibold uppercase tracking-wider text-blue-600">
-              The ApplyPilot Process
-            </span>
-            <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-slate-900">
-              Save → Prepare → Never Miss a Deadline
-            </h2>
-            <p className="text-xs sm:text-sm text-slate-500">
-              Designed around how students actually apply for competitive programs.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {/* Step 1 */}
-            <div className="rounded-lg border border-slate-200 p-6 bg-white space-y-3">
-              <div className="h-8 w-8 rounded-md bg-blue-50 text-blue-600 flex items-center justify-center font-bold text-xs">
-                01
-              </div>
-              <h3 className="text-base font-semibold text-slate-900">1. Save Instantly</h3>
-              <p className="text-xs text-slate-600 leading-relaxed">
-                Paste any job posting or fellowship URL. Our server securely extracts eligibility rules, required documents, and cutoff dates into clean fields for your review.
-              </p>
-            </div>
-
-            {/* Step 2 */}
-            <div className="rounded-lg border border-slate-200 p-6 bg-white space-y-3">
-              <div className="h-8 w-8 rounded-md bg-blue-50 text-blue-600 flex items-center justify-center font-bold text-xs">
-                02
-              </div>
-              <h3 className="text-base font-semibold text-slate-900">2. Prepare with AI</h3>
-              <p className="text-xs text-slate-600 leading-relaxed">
-                Your saved Profile Vault holds your real projects, coursework, and awards. ApplyPilot uses that exact background to generate tailored answers and recruiter cold emails.
-              </p>
-            </div>
-
-            {/* Step 3 */}
-            <div className="rounded-lg border border-slate-200 p-6 bg-white space-y-3">
-              <div className="h-8 w-8 rounded-md bg-blue-50 text-blue-600 flex items-center justify-center font-bold text-xs">
-                03
-              </div>
-              <h3 className="text-base font-semibold text-slate-900">3. Never Miss Cutoffs</h3>
-              <p className="text-xs text-slate-600 leading-relaxed">
-                Get automated transactional reminder emails via Resend at 7 days, 3 days, and 1 day before closing. Track statuses until you receive decisions.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Features Grid Section */}
-      <section id="features" className="py-16 sm:py-24 border-b border-slate-200/80 bg-slate-50/50">
+      {/* How it works */}
+      <section id="how-it-works" className="py-16 sm:py-24 border-b border-slate-900/8">
         <div className="max-w-6xl mx-auto px-4 sm:px-6">
-          <div className="text-center max-w-xl mx-auto mb-16 space-y-2">
-            <span className="text-xs font-semibold uppercase tracking-wider text-blue-600">
-              Core Capabilities
-            </span>
-            <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-slate-900">
-              Engineered for reliability and authentic applications
-            </h2>
-            <p className="text-xs sm:text-sm text-slate-500">
-              Everything you need to stay organised across recruiting seasons.
-            </p>
-          </div>
+          <h2 className="text-2xl sm:text-3xl font-medium tracking-tight text-slate-900 max-w-xl">
+            Save, prepare, apply before it closes
+          </h2>
+          <ol className="mt-10 grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12">
+            {steps.map((s, i) => (
+              <li key={s.title} className="border-t border-slate-900/10 pt-5">
+                <span className="font-mono text-sm tabular-nums text-blue-600">0{i + 1}</span>
+                <h3 className="mt-2 text-base font-medium text-slate-900">{s.title}</h3>
+                <p className="mt-2 text-sm leading-6 text-slate-600">{s.body}</p>
+              </li>
+            ))}
+          </ol>
+        </div>
+      </section>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <div className="rounded-lg border border-slate-200 bg-white p-5 space-y-2">
-              <div className="h-8 w-8 rounded bg-slate-100 flex items-center justify-center text-slate-700 mb-3">
-                <LinkIcon className="h-4 w-4 text-blue-600" />
+      {/* Features */}
+      <section id="features" className="py-16 sm:py-24 border-b border-slate-900/8 bg-slate-50">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6">
+          <h2 className="text-2xl sm:text-3xl font-medium tracking-tight text-slate-900 max-w-xl">
+            Built for a season of applications
+          </h2>
+          <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-12 gap-y-10">
+            {features.map(({ icon: Icon, title, body }) => (
+              <div key={title}>
+                <Icon className="h-5 w-5 text-slate-500" />
+                <h3 className="mt-3 text-sm font-medium text-slate-900">{title}</h3>
+                <p className="mt-1 text-sm leading-6 text-slate-600">{body}</p>
               </div>
-              <h4 className="text-sm font-semibold text-slate-900">SSRF-Protected URL Extraction</h4>
-              <p className="text-xs text-slate-600 leading-relaxed">
-                Blocks private and loopback IPs. Extracts title, organization, documents, and deadlines without executing untrusted script tags.
-              </p>
-            </div>
-
-            <div className="rounded-lg border border-slate-200 bg-white p-5 space-y-2">
-              <div className="h-8 w-8 rounded bg-slate-100 flex items-center justify-center text-slate-700 mb-3">
-                <Sparkles className="h-4 w-4 text-blue-600" />
-              </div>
-              <h4 className="text-sm font-semibold text-slate-900">Grounded AI Writing Assistant</h4>
-              <p className="text-xs text-slate-600 leading-relaxed">
-                Generates recruiter outreach, follow-ups, and application answers strictly grounded in your verified technical projects and skills.
-              </p>
-            </div>
-
-            <div className="rounded-lg border border-slate-200 bg-white p-5 space-y-2">
-              <div className="h-8 w-8 rounded bg-slate-100 flex items-center justify-center text-slate-700 mb-3">
-                <Mail className="h-4 w-4 text-emerald-600" />
-              </div>
-              <h4 className="text-sm font-semibold text-slate-900">Database-Backed Resend Alerts</h4>
-              <p className="text-xs text-slate-600 leading-relaxed">
-                Idempotency key enforcement ensures you never receive duplicate reminders. Skips opportunities once marked as submitted.
-              </p>
-            </div>
-
-            <div className="rounded-lg border border-slate-200 bg-white p-5 space-y-2">
-              <div className="h-8 w-8 rounded bg-slate-100 flex items-center justify-center text-slate-700 mb-3">
-                <Columns className="h-4 w-4 text-purple-600" />
-              </div>
-              <h4 className="text-sm font-semibold text-slate-900">Dual Table & Kanban Views</h4>
-              <p className="text-xs text-slate-600 leading-relaxed">
-                Switch seamlessly between an information-dense sortable table and a Linear-style pipeline board.
-              </p>
-            </div>
-
-            <div className="rounded-lg border border-slate-200 bg-white p-5 space-y-2">
-              <div className="h-8 w-8 rounded bg-slate-100 flex items-center justify-center text-slate-700 mb-3">
-                <UserCheck className="h-4 w-4 text-slate-700" />
-              </div>
-              <h4 className="text-sm font-semibold text-slate-900">Personal Profile Vault</h4>
-              <p className="text-xs text-slate-600 leading-relaxed">
-                Centralize your skills, achievements, course projects, and preferences in one protected place guarded by PostgreSQL RLS.
-              </p>
-            </div>
-
-            <div className="rounded-lg border border-slate-200 bg-white p-5 space-y-2">
-              <div className="h-8 w-8 rounded bg-slate-100 flex items-center justify-center text-slate-700 mb-3">
-                <Shield className="h-4 w-4 text-slate-700" />
-              </div>
-              <h4 className="text-sm font-semibold text-slate-900">Strict Data Isolation</h4>
-              <p className="text-xs text-slate-600 leading-relaxed">
-                Supabase Row Level Security ensures users can only read and write their own applications, drafts, and profile data.
-              </p>
-            </div>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* FAQ Section */}
-      <section id="faq" className="py-16 sm:py-24 border-b border-slate-200/80">
+      {/* FAQ */}
+      <section id="faq" className="py-16 sm:py-24 border-b border-slate-900/8">
         <div className="max-w-3xl mx-auto px-4 sm:px-6">
-          <div className="text-center mb-12 space-y-2">
-            <h2 className="text-2xl font-bold tracking-tight text-slate-900">
-              Frequently Asked Questions
-            </h2>
-            <p className="text-xs text-slate-500">
-              Honest answers about ApplyPilot and how your data is handled.
-            </p>
-          </div>
-
-          <div className="space-y-4">
-            <div className="rounded-lg border border-slate-200 p-4 bg-white">
-              <h4 className="text-xs font-semibold text-slate-900">
-                Does ApplyPilot submit applications or send cold emails automatically?
-              </h4>
-              <p className="mt-1.5 text-xs text-slate-600 leading-relaxed">
-                No. In our MVP, all drafting and sending actions are completely separate. ApplyPilot helps you generate and edit high-quality drafts, but you retain full control over reviewing, editing, and submitting everything yourself.
-              </p>
-            </div>
-
-            <div className="rounded-lg border border-slate-200 p-4 bg-white">
-              <h4 className="text-xs font-semibold text-slate-900">
-                How does the AI writing assistant know my background?
-              </h4>
-              <p className="mt-1.5 text-xs text-slate-600 leading-relaxed">
-                You save your projects, work experience, graduation year, and technical skills once in your Profile Vault. When you ask the AI to draft an email or answer, it retrieves your profile context and directly weaves your real accomplishments into the response.
-              </p>
-            </div>
-
-            <div className="rounded-lg border border-slate-200 p-4 bg-white">
-              <h4 className="text-xs font-semibold text-slate-900">
-                How do deadline email reminders work?
-              </h4>
-              <p className="mt-1.5 text-xs text-slate-600 leading-relaxed">
-                When you save an opportunity with a closing date, ApplyPilot schedules alerts according to your preferences (by default: 7 days, 3 days, and 1 day prior). Emails are sent through Resend with direct links to your tracked opportunity.
-              </p>
-            </div>
-
-            <div className="rounded-lg border border-slate-200 p-4 bg-white">
-              <h4 className="text-xs font-semibold text-slate-900">
-                Can other users see my applications or profile?
-              </h4>
-              <p className="mt-1.5 text-xs text-slate-600 leading-relaxed">
-                Never. PostgreSQL Row Level Security (RLS) is strictly enforced on all tables, isolating each user&apos;s opportunities, drafts, and profile data to their authenticated Supabase user ID.
-              </p>
-            </div>
-          </div>
+          <h2 className="text-2xl font-medium tracking-tight text-slate-900">Questions</h2>
+          <dl className="mt-8 divide-y divide-slate-900/8 border-y border-slate-900/8">
+            {faqs.map((f) => (
+              <div key={f.q} className="py-5">
+                <dt className="text-sm font-medium text-slate-900">{f.q}</dt>
+                <dd className="mt-2 text-sm leading-6 text-slate-600">{f.a}</dd>
+              </div>
+            ))}
+          </dl>
         </div>
       </section>
 
       {/* Footer */}
       <footer className="py-12 bg-white">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500">
-          <div className="flex items-center gap-2">
-            <div className="h-5 w-5 rounded bg-slate-900 flex items-center justify-center text-white text-[10px] font-bold">
-              AP
-            </div>
-            <span className="font-medium text-slate-800">ApplyPilot</span>
-            <span>— Your opportunities. Organised. Never missed.</span>
-          </div>
-
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-slate-500">
+          <Logo />
           <div className="flex items-center gap-6">
-            <Link href="/login" className="hover:text-slate-900">
-              Sign In
-            </Link>
-            <Link href="/signup" className="hover:text-slate-900">
-              Get Started
-            </Link>
-            <a href="https://github.com" target="_blank" rel="noopener noreferrer" className="hover:text-slate-900">
+            <Link href="/login" className="hover:text-slate-900 transition-colors">Sign in</Link>
+            <Link href="/signup" className="hover:text-slate-900 transition-colors">Create account</Link>
+            <a href="https://github.com" target="_blank" rel="noopener noreferrer" className="hover:text-slate-900 transition-colors">
               GitHub
             </a>
           </div>

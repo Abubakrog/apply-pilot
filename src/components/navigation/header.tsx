@@ -30,7 +30,7 @@ export function Header({
 
         <div>
           {title && (
-            <h1 className="text-sm font-semibold tracking-tight text-slate-900 dark:text-slate-100">
+            <h1 className="text-sm font-semibold text-slate-900 dark:text-slate-100">
               {title}
             </h1>
           )}
@@ -57,8 +57,8 @@ export function Header({
             onClick={onOpenAddModal}
             className="text-xs h-8 bg-blue-600 hover:bg-blue-700 text-white gap-1.5"
           >
-            <Plus className="h-3.5 w-3.5" />
-            <span className="hidden sm:inline">Add Opportunity</span>
+            <Plus className="h-4 w-4" />
+            <span className="hidden sm:inline">Add opportunity</span>
             <span className="sm:hidden">Add</span>
           </Button>
         )}

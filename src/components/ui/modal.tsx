@@ -55,14 +55,14 @@ export function Modal({
       {/* Modal Dialog */}
       <div
         className={cn(
-          'relative w-full rounded-lg border border-slate-200 bg-white p-6 shadow-xl dark:border-slate-800 dark:bg-slate-900 z-10 transition-all max-h-[90vh] flex flex-col',
+          'relative w-full rounded-lg border border-slate-200 bg-white p-6 shadow-xl dark:border-slate-800 dark:bg-slate-900 z-10 transition max-h-[90vh] flex flex-col',
           maxWidthClasses[maxWidth]
         )}
       >
         <div className="flex items-start justify-between pb-3 border-b border-slate-100 dark:border-slate-800">
           <div>
             {title && (
-              <h2 className="text-lg font-semibold tracking-tight text-slate-900 dark:text-slate-100">
+              <h2 className="text-lg font-semibold text-slate-900 dark:text-slate-100">
                 {title}
               </h2>
             )}

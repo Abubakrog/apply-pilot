@@ -15,7 +15,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: 'ApplyPilot — AI-Powered Opportunity & Application Tracker',
+  title: 'ApplyPilot — deadlines for internships, scholarships and hackathons',
   description:
     'Keep internships, scholarships, fellowships, and hackathons organised. Track every deadline, generate tailored application drafts, and get timely email reminders.',
   icons: {
@@ -33,7 +33,7 @@ export default function RootLayout({
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col bg-slate-50/50 text-slate-900 selection:bg-blue-100 selection:text-blue-900">
+      <body className="min-h-full flex flex-col bg-background text-foreground selection:bg-blue-100 selection:text-blue-900">
         <AppProvider>
           <ToastProvider>{children}</ToastProvider>
         </AppProvider>

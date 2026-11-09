@@ -13,7 +13,7 @@ export function EnvBanner() {
   return (
     <div className="bg-slate-900 text-slate-100 px-4 py-2 text-xs flex flex-wrap items-center justify-between gap-2 border-b border-slate-800">
       <div className="flex items-center gap-2">
-        <Info className="h-3.5 w-3.5 text-blue-400 shrink-0" />
+        <Info className="h-4 w-4 text-blue-400 shrink-0" />
         <span>
           {isSupabaseReady ? (
             <span className="text-emerald-400 font-medium">
@@ -38,7 +38,7 @@ export function EnvBanner() {
             className="text-[11px] text-slate-300 hover:text-white flex items-center gap-1 underline underline-offset-2"
           >
             <RotateCcw className="h-3 w-3" />
-            Reset Demo Data
+            Reset demo data
           </button>
         )}
         <a
@@ -52,7 +52,7 @@ export function EnvBanner() {
           className="text-slate-400 hover:text-white p-0.5"
           title="Dismiss"
         >
-          <X className="h-3.5 w-3.5" />
+          <X className="h-4 w-4" />
         </button>
       </div>
     </div>

@@ -11,7 +11,6 @@ import {
   Settings,
   Plus,
   LogOut,
-  Sparkles,
   ExternalLink,
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
@@ -39,12 +38,12 @@ export function Sidebar({ onOpenAddModal, mobileOpen, onMobileClose }: SidebarPr
       icon: <Briefcase className="h-4 w-4" />,
     },
     {
-      name: 'Profile Vault',
+      name: 'Profile',
       href: '/profile',
       icon: <UserCheck className="h-4 w-4" />,
     },
     {
-      name: 'Settings & Alerts',
+      name: 'Settings',
       href: '/settings',
       icon: <Settings className="h-4 w-4" />,
     },
@@ -70,16 +69,14 @@ export function Sidebar({ onOpenAddModal, mobileOpen, onMobileClose }: SidebarPr
         {/* Brand / Logo */}
         <div className="flex h-14 items-center justify-between px-4 border-b border-slate-100 dark:border-slate-800">
           <Link href="/dashboard" className="flex items-center gap-2" onClick={onMobileClose}>
-            <div className="h-6 w-6 rounded bg-slate-900 dark:bg-slate-50 flex items-center justify-center text-white dark:text-slate-950 text-xs font-bold tracking-wider">
+            <div className="h-6 w-6 rounded bg-slate-900 dark:bg-slate-50 flex items-center justify-center text-white dark:text-slate-950 text-[11px] font-semibold">
               AP
             </div>
-            <span className="font-semibold text-sm tracking-tight text-slate-900 dark:text-slate-100">
-              Apply<span className="text-blue-600">Pilot</span>
-            </span>
+            <span className="font-semibold text-sm text-slate-900 dark:text-slate-100">ApplyPilot</span>
           </Link>
 
           {isDemoMode && (
-            <span className="text-[10px] font-mono px-1.5 py-0.5 rounded bg-amber-50 text-amber-700 dark:bg-amber-950/40 dark:text-amber-300 border border-amber-200 dark:border-amber-800">
+            <span className="text-[11px] font-mono px-1.5 py-0.5 rounded bg-amber-50 text-amber-700 dark:bg-amber-950/40 dark:text-amber-300 border border-amber-200 dark:border-amber-800">
               Demo
             </span>
           )}
@@ -94,10 +91,10 @@ export function Sidebar({ onOpenAddModal, mobileOpen, onMobileClose }: SidebarPr
                 if (onMobileClose) onMobileClose();
               }}
               size="sm"
-              className="w-full justify-start text-xs h-8 bg-blue-600 hover:bg-blue-700 text-white"
+              className="w-full justify-start h-9 text-sm"
             >
-              <Plus className="h-3.5 w-3.5 mr-1.5" />
-              Add Opportunity
+              <Plus className="h-4 w-4 mr-1.5" />
+              Add opportunity
             </Button>
           </div>
         )}
@@ -112,9 +109,9 @@ export function Sidebar({ onOpenAddModal, mobileOpen, onMobileClose }: SidebarPr
                 href={item.href}
                 onClick={onMobileClose}
                 className={cn(
-                  'flex items-center gap-2.5 rounded-md px-2.5 py-1.5 text-xs font-medium transition-colors',
+                  'flex h-9 items-center gap-3 rounded-lg px-3 text-sm transition-colors',
                   isActive
-                    ? 'bg-slate-100 text-slate-900 dark:bg-slate-800 dark:text-slate-100 font-semibold'
+                    ? 'bg-slate-100 text-slate-900 shadow-[inset_0_0_0_1px_rgba(0,0,0,0.04)] dark:bg-slate-800 dark:text-slate-100'
                     : 'text-slate-600 hover:bg-slate-50 hover:text-slate-900 dark:text-slate-400 dark:hover:bg-slate-900 dark:hover:text-slate-200'
                 )}
               >
@@ -129,17 +126,10 @@ export function Sidebar({ onOpenAddModal, mobileOpen, onMobileClose }: SidebarPr
 
         {/* Environment Status Badge */}
         <div className="px-3 py-2 border-t border-slate-100 dark:border-slate-800">
-          <div className="rounded-md bg-slate-50 dark:bg-slate-900/50 p-2 text-[11px] text-slate-500 border border-slate-200/60 dark:border-slate-800">
-            <div className="flex items-center justify-between mb-1">
-              <span className="font-medium text-slate-700 dark:text-slate-300">Sync Status</span>
-              <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" />
-            </div>
-            <p className="text-[10px] text-slate-400 leading-tight">
-              {isSupabaseReady
-                ? 'Supabase Cloud Connected'
-                : 'Local / Offline Reactive Store'}
-            </p>
-          </div>
+          <p className="flex items-center gap-2 px-1 text-xs text-slate-500 dark:text-slate-400">
+            <span className={`h-1.5 w-1.5 rounded-full ${isSupabaseReady ? 'bg-emerald-500' : 'bg-slate-400'}`} />
+            {isSupabaseReady ? 'Synced to your account' : 'Saved on this device only'}
+          </p>
         </div>
 
         {/* Footer User Info */}
@@ -152,7 +142,7 @@ export function Sidebar({ onOpenAddModal, mobileOpen, onMobileClose }: SidebarPr
               <p className="truncate text-xs font-medium text-slate-900 dark:text-slate-100">
                 {user?.name || 'Applicant'}
               </p>
-              <p className="truncate text-[10px] text-slate-400">{user?.email || 'Logged in'}</p>
+              <p className="truncate text-xs text-slate-500">{user?.email || 'Logged in'}</p>
             </div>
           </div>
 
@@ -161,7 +151,7 @@ export function Sidebar({ onOpenAddModal, mobileOpen, onMobileClose }: SidebarPr
             title="Sign out"
             className="p-1.5 text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 rounded"
           >
-            <LogOut className="h-3.5 w-3.5" />
+            <LogOut className="h-4 w-4" />
           </button>
         </div>
       </aside>

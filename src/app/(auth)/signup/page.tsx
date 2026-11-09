@@ -8,7 +8,7 @@ import { isSupabaseConfigured } from '@/lib/supabase/env';
 import { useApp } from '@/lib/store/app-context';
 import { useToast } from '@/components/ui/toast';
 import { Button } from '@/components/ui/button';
-import { Sparkles, Mail, Lock, User, GraduationCap, AlertCircle, CheckCircle } from 'lucide-react';
+import { PlayCircle, Mail, Lock, User, GraduationCap, AlertCircle, CheckCircle } from 'lucide-react';
 
 export default function SignUpPage() {
   const router = useRouter();
@@ -32,7 +32,7 @@ export default function SignUpPage() {
 
     if (!isSupabaseReady) {
       enterDemoMode();
-      success('Created local demo account!');
+      success('Demo account created');
       router.push('/dashboard');
       return;
     }
@@ -56,7 +56,7 @@ export default function SignUpPage() {
       }
 
       if (data.session) {
-        success('Account created successfully!');
+        success('Account created');
         router.push('/dashboard');
       } else {
         setConfirmationSent(true);
@@ -73,7 +73,7 @@ export default function SignUpPage() {
 
   const handleDemoAccess = () => {
     enterDemoMode();
-    success('Logged into demo account!');
+    success('Signed in to the demo account');
     router.push('/dashboard');
   };
 
@@ -84,8 +84,8 @@ export default function SignUpPage() {
           <div className="mx-auto h-12 w-12 rounded-full bg-emerald-50 dark:bg-emerald-950/40 flex items-center justify-center text-emerald-600 mb-2">
             <CheckCircle className="h-6 w-6" />
           </div>
-          <h2 className="text-base font-bold text-slate-900 dark:text-slate-100">
-            Check Your Email
+          <h2 className="text-base font-semibold text-slate-900 dark:text-slate-100">
+            Check your email
           </h2>
           <p className="text-xs text-slate-500 leading-relaxed">
             We sent a verification link to <strong>{email}</strong>. Once confirmed, you can sign in to your ApplyPilot dashboard.
@@ -93,7 +93,7 @@ export default function SignUpPage() {
           <div className="pt-2">
             <Link href="/login">
               <Button size="sm" variant="outline" className="w-full text-xs">
-                Back to Sign In
+                Back to sign in
               </Button>
             </Link>
           </div>
@@ -108,14 +108,14 @@ export default function SignUpPage() {
         {/* Brand */}
         <div className="text-center">
           <Link href="/" className="inline-flex items-center gap-2 mb-2">
-            <div className="h-7 w-7 rounded bg-slate-900 dark:bg-slate-50 flex items-center justify-center text-white dark:text-slate-950 text-xs font-bold tracking-wider">
+            <div className="h-7 w-7 rounded bg-slate-900 dark:bg-slate-50 flex items-center justify-center text-white dark:text-slate-950 text-xs font-semibold">
               AP
             </div>
-            <span className="font-bold text-lg tracking-tight text-slate-900 dark:text-slate-100">
-              Apply<span className="text-blue-600">Pilot</span>
+            <span className="font-semibold text-lg text-slate-900 dark:text-slate-100">
+              ApplyPilot
             </span>
           </Link>
-          <h2 className="text-xl font-bold tracking-tight text-slate-900 dark:text-slate-100">
+          <h2 className="text-xl font-semibold text-slate-900 dark:text-slate-100">
             Create your free account
           </h2>
           <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">
@@ -135,7 +135,7 @@ export default function SignUpPage() {
           <form onSubmit={handleSignUp} className="space-y-3">
             <div>
               <label className="block text-xs font-medium text-slate-700 dark:text-slate-300 mb-1">
-                Full Name
+                Full name
               </label>
               <div className="relative">
                 <User className="absolute left-3 top-2.5 h-4 w-4 text-slate-400" />
@@ -152,7 +152,7 @@ export default function SignUpPage() {
 
             <div>
               <label className="block text-xs font-medium text-slate-700 dark:text-slate-300 mb-1">
-                College or University
+                College or university
               </label>
               <div className="relative">
                 <GraduationCap className="absolute left-3 top-2.5 h-4 w-4 text-slate-400" />
@@ -168,7 +168,7 @@ export default function SignUpPage() {
 
             <div>
               <label className="block text-xs font-medium text-slate-700 dark:text-slate-300 mb-1">
-                Email Address
+                Email address
               </label>
               <div className="relative">
                 <Mail className="absolute left-3 top-2.5 h-4 w-4 text-slate-400" />
@@ -199,15 +199,15 @@ export default function SignUpPage() {
                   className="w-full pl-9 pr-3 py-1.5 text-xs rounded-md border border-slate-200 bg-white dark:bg-slate-950 dark:border-slate-800 text-slate-900 dark:text-slate-100 focus:outline-none focus:ring-1 focus:ring-blue-600"
                 />
               </div>
-              <p className="text-[10px] text-slate-400 mt-1">Minimum 6 characters.</p>
+              <p className="text-[11px] text-slate-400 mt-1">Minimum 6 characters.</p>
             </div>
 
             <Button
               type="submit"
               loading={loading}
-              className="w-full text-xs h-9 bg-slate-900 hover:bg-slate-800 text-white dark:bg-slate-50 dark:text-slate-900 dark:hover:bg-slate-200 mt-1"
+              className="w-full h-9 text-sm"
             >
-              Create Account
+              Create account
             </Button>
           </form>
 
@@ -215,9 +215,9 @@ export default function SignUpPage() {
             <div className="absolute inset-0 flex items-center">
               <div className="w-full border-t border-slate-200 dark:border-slate-800" />
             </div>
-            <div className="relative flex justify-center text-[10px] uppercase">
+            <div className="relative flex justify-center text-[11px]">
               <span className="bg-white px-2 text-slate-400 dark:bg-slate-900">
-                Or explore instantly
+                Or try it first
               </span>
             </div>
           </div>
@@ -228,8 +228,8 @@ export default function SignUpPage() {
             onClick={handleDemoAccess}
             className="w-full text-xs h-9 gap-1.5 text-slate-700 dark:text-slate-300"
           >
-            <Sparkles className="h-3.5 w-3.5 text-blue-600" />
-            Launch Instant Demo
+            <PlayCircle className="h-4 w-4 text-blue-600" />
+            Launch instant demo
           </Button>
         </div>
 

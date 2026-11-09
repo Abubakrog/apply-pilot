@@ -13,7 +13,7 @@ import {
   Code2,
   Trophy,
   Save,
-  Sparkles,
+  IdCard,
   MapPin,
   FileText,
 } from 'lucide-react';
@@ -115,7 +115,7 @@ export default function ProfilePage() {
     <div className="flex-1 flex flex-col">
       <Header
         title="Profile Vault"
-        description="Your academic & technical resume context for generating hyper-personalised drafts."
+        description="Your background, used to write every draft"
       />
 
       <div className="flex-1 p-4 sm:p-6 lg:p-8 max-w-5xl w-full mx-auto space-y-6">
@@ -124,8 +124,8 @@ export default function ProfilePage() {
           <div className="rounded-lg border border-slate-200 bg-white p-5 dark:border-slate-800 dark:bg-slate-900 shadow-xs flex flex-col sm:flex-row sm:items-center justify-between gap-4">
             <div>
               <h2 className="text-sm font-semibold text-slate-900 dark:text-slate-100 flex items-center gap-1.5">
-                <Sparkles className="h-4 w-4 text-blue-600" />
-                Profile Vault Context Engine
+                <IdCard className="h-4 w-4 text-blue-600" />
+                Profile vault context engine
               </h2>
               <p className="text-xs text-slate-500 dark:text-slate-400 mt-1 max-w-xl">
                 Fill this once. When drafting application answers or cold emails, ApplyPilot
@@ -139,22 +139,22 @@ export default function ProfilePage() {
               size="sm"
               className="bg-blue-600 hover:bg-blue-700 text-white text-xs gap-1.5 shrink-0"
             >
-              <Save className="h-3.5 w-3.5" />
-              Save Vault
+              <Save className="h-4 w-4" />
+              Save vault
             </Button>
           </div>
 
           {/* Section 1: Basic & Academic Credentials */}
           <div className="rounded-lg border border-slate-200 bg-white p-5 dark:border-slate-800 dark:bg-slate-900 shadow-xs space-y-4">
-            <h3 className="text-xs font-semibold uppercase tracking-wider text-slate-900 dark:text-slate-100 flex items-center gap-1.5 pb-2 border-b border-slate-100 dark:border-slate-800">
+            <h3 className="text-xs font-semibold text-slate-900 dark:text-slate-100 flex items-center gap-1.5 pb-2 border-b border-slate-100 dark:border-slate-800">
               <GraduationCap className="h-4 w-4 text-slate-500" />
-              Basic & Academic Background
+              Basic and academic background
             </h3>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
                 <label className="block text-xs font-medium text-slate-700 dark:text-slate-300 mb-1">
-                  Full Name
+                  Full name
                 </label>
                 <input
                   type="text"
@@ -167,7 +167,7 @@ export default function ProfilePage() {
 
               <div>
                 <label className="block text-xs font-medium text-slate-700 dark:text-slate-300 mb-1">
-                  Contact Email
+                  Contact email
                 </label>
                 <input
                   type="email"
@@ -182,7 +182,7 @@ export default function ProfilePage() {
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
               <div>
                 <label className="block text-xs font-medium text-slate-700 dark:text-slate-300 mb-1">
-                  College or University
+                  College or university
                 </label>
                 <input
                   type="text"
@@ -195,7 +195,7 @@ export default function ProfilePage() {
 
               <div>
                 <label className="block text-xs font-medium text-slate-700 dark:text-slate-300 mb-1">
-                  Degree & Major
+                  Degree and major
                 </label>
                 <input
                   type="text"
@@ -208,7 +208,7 @@ export default function ProfilePage() {
 
               <div>
                 <label className="block text-xs font-medium text-slate-700 dark:text-slate-300 mb-1">
-                  Graduation Year
+                  Graduation year
                 </label>
                 <input
                   type="text"
@@ -222,7 +222,7 @@ export default function ProfilePage() {
 
             <div>
               <label className="block text-xs font-medium text-slate-700 dark:text-slate-300 mb-1">
-                Resume Link / Portfolio URL
+                Resume link / portfolio URL
               </label>
               <input
                 type="url"
@@ -236,9 +236,9 @@ export default function ProfilePage() {
 
           {/* Section 2: Skills & Technical Projects */}
           <div className="rounded-lg border border-slate-200 bg-white p-5 dark:border-slate-800 dark:bg-slate-900 shadow-xs space-y-4">
-            <h3 className="text-xs font-semibold uppercase tracking-wider text-slate-900 dark:text-slate-100 flex items-center gap-1.5 pb-2 border-b border-slate-100 dark:border-slate-800">
+            <h3 className="text-xs font-semibold text-slate-900 dark:text-slate-100 flex items-center gap-1.5 pb-2 border-b border-slate-100 dark:border-slate-800">
               <Code2 className="h-4 w-4 text-slate-500" />
-              Technical Skills & Projects
+              Technical skills and projects
             </h3>
 
             <div>
@@ -273,9 +273,9 @@ export default function ProfilePage() {
 
           {/* Section 3: Experience & Achievements */}
           <div className="rounded-lg border border-slate-200 bg-white p-5 dark:border-slate-800 dark:bg-slate-900 shadow-xs space-y-4">
-            <h3 className="text-xs font-semibold uppercase tracking-wider text-slate-900 dark:text-slate-100 flex items-center gap-1.5 pb-2 border-b border-slate-100 dark:border-slate-800">
+            <h3 className="text-xs font-semibold text-slate-900 dark:text-slate-100 flex items-center gap-1.5 pb-2 border-b border-slate-100 dark:border-slate-800">
               <Briefcase className="h-4 w-4 text-slate-500" />
-              Work Experience & Notable Achievements
+              Work experience and notable achievements
             </h3>
 
             <div>
@@ -307,14 +307,14 @@ export default function ProfilePage() {
 
           {/* Section 4: Preferences */}
           <div className="rounded-lg border border-slate-200 bg-white p-5 dark:border-slate-800 dark:bg-slate-900 shadow-xs space-y-4">
-            <h3 className="text-xs font-semibold uppercase tracking-wider text-slate-900 dark:text-slate-100 flex items-center gap-1.5 pb-2 border-b border-slate-100 dark:border-slate-800">
+            <h3 className="text-xs font-semibold text-slate-900 dark:text-slate-100 flex items-center gap-1.5 pb-2 border-b border-slate-100 dark:border-slate-800">
               <MapPin className="h-4 w-4 text-slate-500" />
-              Target Opportunity Preferences
+              Target opportunity preferences
             </h3>
 
             <div>
               <label className="block text-xs font-medium text-slate-700 dark:text-slate-300 mb-1.5">
-                Preferred Opportunity Types
+                Preferred opportunity types
               </label>
               <div className="flex flex-wrap gap-2">
                 {ALL_CATEGORIES.map((cat) => {
@@ -374,7 +374,7 @@ export default function ProfilePage() {
               className="bg-blue-600 hover:bg-blue-700 text-white text-xs gap-1.5 px-6"
             >
               <Save className="h-4 w-4" />
-              Save Profile Vault
+              Save profile vault
             </Button>
           </div>
         </form>

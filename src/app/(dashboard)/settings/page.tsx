@@ -129,7 +129,7 @@ export default function SettingsPage() {
         throw new Error(data.error || 'Failed to dispatch email');
       }
 
-      setTestResult(data.message || 'Email successfully sent!');
+      setTestResult(data.message || 'Test email sent');
       success(`Email sent to ${testEmail}! Check your inbox.`);
     } catch (err: unknown) {
       const e = err as Error;
@@ -155,7 +155,7 @@ export default function SettingsPage() {
               <div>
                 <h2 className="text-sm font-semibold text-slate-900 dark:text-slate-100 flex items-center gap-1.5">
                   <Bell className="h-4 w-4 text-blue-600" />
-                  Automated Deadline Reminders
+                  Automated deadline reminders
                 </h2>
                 <p className="text-xs text-slate-500 dark:text-slate-400 mt-0.5">
                   Scheduled notifications delivered to your inbox before opportunity deadlines close.
@@ -170,14 +170,14 @@ export default function SettingsPage() {
                   onChange={(e) => setRemindersEnabled(e.target.checked)}
                   className="sr-only peer"
                 />
-                <div className="w-9 h-5 bg-slate-200 peer-focus:outline-none rounded-full peer dark:bg-slate-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-slate-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-blue-600" />
+                <div className="w-9 h-5 bg-slate-200 peer-focus:outline-none rounded-full peer dark:bg-slate-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-slate-300 after:border after:rounded-full after:h-4 after:w-4 after:transition peer-checked:bg-blue-600" />
               </label>
             </div>
 
             {/* Reminder Intervals */}
             <div className="space-y-2">
               <label className="block text-xs font-medium text-slate-700 dark:text-slate-300">
-                Reminder Schedules
+                Reminder schedules
               </label>
               <p className="text-[11px] text-slate-400 mb-2">
                 Choose when you want reminder alerts sent relative to the opportunity deadline.
@@ -217,7 +217,7 @@ export default function SettingsPage() {
             {/* User Timezone */}
             <div className="pt-2">
               <label className="block text-xs font-medium text-slate-700 dark:text-slate-300 mb-1">
-                Preferred Timezone
+                Preferred timezone
               </label>
               <select
                 value={timezone}
@@ -238,7 +238,7 @@ export default function SettingsPage() {
 
             <div className="pt-3 border-t border-slate-100 dark:border-slate-800 flex justify-end">
               <Button type="submit" loading={isSavingPrefs} size="sm" className="text-xs">
-                Save Reminder Preferences
+                Save reminder preferences
               </Button>
             </div>
           </div>
@@ -272,8 +272,8 @@ export default function SettingsPage() {
               variant="outline"
               className="text-xs gap-1.5 shrink-0"
             >
-              <Send className="h-3.5 w-3.5" />
-              Send Test Email
+              <Send className="h-4 w-4" />
+              Send test email
             </Button>
           </div>
 
@@ -294,7 +294,7 @@ export default function SettingsPage() {
         <div className="rounded-lg border border-slate-200 bg-white p-5 dark:border-slate-800 dark:bg-slate-900 shadow-xs space-y-4">
           <h2 className="text-sm font-semibold text-slate-900 dark:text-slate-100 flex items-center gap-1.5 pb-2 border-b border-slate-100 dark:border-slate-800">
             <Key className="h-4 w-4 text-slate-500" />
-            Integration Diagnostics
+            Integration diagnostics
           </h2>
 
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
@@ -364,13 +364,13 @@ export default function SettingsPage() {
         {/* Section 4: Demo Data & Account Reset */}
         <div className="rounded-lg border border-slate-200 bg-white p-5 dark:border-slate-800 dark:bg-slate-900 shadow-xs space-y-3">
           <h2 className="text-sm font-semibold text-slate-900 dark:text-slate-100 pb-2 border-b border-slate-100 dark:border-slate-800">
-            Account & Demo Options
+            Account and demo options
           </h2>
 
           <div className="flex flex-wrap items-center justify-between gap-3 pt-1">
             <div>
               <p className="text-xs font-medium text-slate-800 dark:text-slate-200">
-                Reset Demo Opportunities
+                Reset demo opportunities
               </p>
               <p className="text-[11px] text-slate-500">
                 Reload the initial 5 opportunities (KP Fellows, Cloudflare, HackMIT, etc.)
@@ -381,12 +381,12 @@ export default function SettingsPage() {
               size="sm"
               onClick={() => {
                 resetToSeedData();
-                success('Demo opportunities reloaded!');
+                success('Demo opportunities reloaded');
               }}
               className="text-xs gap-1.5"
             >
-              <RotateCcw className="h-3.5 w-3.5" />
-              Reset Demo Data
+              <RotateCcw className="h-4 w-4" />
+              Reset demo data
             </Button>
           </div>
 
@@ -395,7 +395,7 @@ export default function SettingsPage() {
               Signed in as: <strong>{user?.email || 'Demo User'}</strong>
             </span>
             <Button variant="ghost" size="sm" onClick={() => signOut()} className="text-xs text-red-600 hover:text-red-700">
-              Sign Out
+              Sign out
             </Button>
           </div>
         </div>

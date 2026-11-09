@@ -11,11 +11,11 @@ export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElemen
 export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
   ({ className, variant = 'primary', size = 'md', loading, disabled, children, ...props }, ref) => {
     const baseStyles =
-      'inline-flex items-center justify-center font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-slate-950 disabled:pointer-events-none disabled:opacity-50 select-none';
+      'inline-flex items-center justify-center font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600/40 active:scale-[0.98] disabled:pointer-events-none disabled:opacity-50 select-none';
 
     const variants = {
       primary:
-        'bg-slate-900 text-white hover:bg-slate-800 shadow-sm dark:bg-slate-50 dark:text-slate-900 dark:hover:bg-slate-200',
+        'bg-blue-600 text-white hover:bg-blue-700 shadow-[inset_0_1px_0_rgba(255,255,255,0.12)] dark:bg-slate-50 dark:text-slate-900 dark:hover:bg-white',
       secondary:
         'bg-slate-100 text-slate-900 hover:bg-slate-200 dark:bg-slate-800 dark:text-slate-100 dark:hover:bg-slate-700',
       outline:
@@ -29,7 +29,7 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     const sizes = {
       sm: 'h-8 px-3 text-xs rounded-md gap-1.5',
       md: 'h-9 px-4 text-sm rounded-md gap-2',
-      lg: 'h-10 px-5 text-sm rounded-md gap-2.5',
+      lg: 'h-10 px-5 text-sm rounded-md gap-3',
       icon: 'h-8 w-8 rounded-md p-0',
     };
 
